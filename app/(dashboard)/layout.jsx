@@ -1,9 +1,15 @@
+import SideBar from "@/components/custom/SideBar";
+
 export default function DashboardLayout({ children }) {
   return (
     <>
-      <div className="hidden md:block max-h-screen h-svh bg-primary w-1/4 text-primary-foreground">
-        dashboard layout
-        {children}
+      <div className="h-full w-full relative flex flex-row">
+        <div className="w-fit h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-80 bg-gray-900">
+          <SideBar />
+        </div>
+        <main className="w-full md:pl-72 pb-10 border border-red-500">
+          {children}
+        </main>
       </div>
     </>
   );

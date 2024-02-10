@@ -2,6 +2,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "./api/auth/_components/SessionProvider";
 import { getServerSession } from "next-auth";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import NavBar from "@/components/custom/NavBar";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +21,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
-          <h1>main layout</h1>
+          <NavBar />
           {children}
         </SessionProvider>
       </body>
