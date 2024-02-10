@@ -68,7 +68,8 @@ export default function SideBar() {
             <div className="relative h-8 w-8 mr-4">
               <Image fill alt="Logo" src="/logo-sass.png" />
             </div>
-            <h1 className={cn("text-2xl font-bold")}>Genius</h1>
+            {/* TODO name Changeks */}
+            <h1 className={cn("text-2xl font-bold")}>SAAS</h1>
           </Link>
           <div className="space-y-1">
             {routes.map((route) => (
@@ -84,7 +85,7 @@ export default function SideBar() {
               >
                 <div className="flex items-center flex-1">
                   <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
-                  {route.label}
+                  <span className="hidden md:flex">{route.label}</span>
                 </div>
               </Link>
             ))}
