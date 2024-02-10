@@ -1,0 +1,21 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193 98" width="193" height="98" filter="invert(93%) hue-rotate(180deg)">
+  <!-- svg-source:excalidraw -->
+  
+  <defs>
+    <style class="style-fonts">
+      @font-face {
+        font-family: "Virgil";
+        src: url("https://excalidraw.com/Virgil.woff2");
+      }
+      @font-face {
+        font-family: "Cascadia";
+        src: url("https://excalidraw.com/Cascadia.woff2");
+      }
+      @font-face {
+        font-family: "Assistant";
+        src: url("https://excalidraw.com/Assistant-Regular.woff2");
+      }
+    </style>
+    
+  </defs>
+  <rect x="0" y="0" width="193" height="98" fill="#ffffff"></rect><g stroke-linecap="round" transform="translate(10 10) rotate(0 86.5 39)"><path d="M19.5 0 C52.53 -1.86, 89.47 -3.08, 153.5 0 M19.5 0 C70.18 -1.17, 121.61 -1.1, 153.5 0 M153.5 0 C166.25 1.09, 173.77 7.32, 173 19.5 M153.5 0 C168.41 -0.51, 172.82 6.18, 173 19.5 M173 19.5 C171.13 29.03, 173.52 40.47, 173 58.5 M173 19.5 C172.44 30.89, 172.25 40.98, 173 58.5 M173 58.5 C173.85 73.09, 165.89 78.53, 153.5 78 M173 58.5 C173.68 73.34, 167.5 79.57, 153.5 78 M153.5 78 C115.65 80.56, 79.29 78.2, 19.5 78 M153.5 78 C113.32 78.18, 71.26 78.03, 19.5 78 M19.5 78 C6.34 79.66, -1.84 72.56, 0 58.5 M19.5 78 C5.54 75.9, -1.9 72.28, 0 58.5 M0 58.5 C-1.37 47.91, -0.92 32.87, 0 19.5 M0 58.5 C-0.24 42.87, -0.43 28.06, 0 19.5 M0 19.5 C0.46 6.16, 6.48 -0.48, 19.5 0 M0 19.5 C-2.11 8.19, 6.04 -0.91, 19.5 0" stroke="#1971c2" stroke-width="2" fill="none"></path></g><g transform="translate(39 35) rotate(0 58.309967041015625 12.5)"><text x="0" y="0" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#e03131" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">LOGO SaSS</text></g></svg>
