@@ -22,7 +22,28 @@ export default function Conversation() {
     },
   });
 
-  function onSubmit(values) {
+  async function onSubmit(values) {
+    try {
+      const messages = { messages: values.username };
+      const response = await fetch("/api/conversation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Add any additional headers if needed
+        },
+        body: JSON.stringify(messages),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      // Handle response data
+      const responseData = await response.json();
+      console.log("Response:", responseData);
+    } catch (error) {
+      console.log(error);
+    }
     console.log(values);
   }
 
