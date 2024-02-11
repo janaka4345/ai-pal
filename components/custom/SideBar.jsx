@@ -12,7 +12,7 @@ import {
   Settings,
   VideoIcon,
 } from "lucide-react";
-// import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
@@ -60,12 +60,16 @@ const routes = [
   },
 ];
 export default function SideBar() {
+  const pathname = usePathname();
   return (
     <>
-      <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
+      <div className="space-y-4 py-4 flex flex-col h-full bg-primary text-white">
         <div className="px-3 py-2 flex-1">
-          <Link href="/" className="flex items-center pl-3 mb-14">
-            <div className="relative h-8 w-8 mr-4">
+          <Link
+            href="/"
+            className=" flex flex-col-reverse md:flex-row md:items-center gap-2 md:gap-3 pl-3 mb-14"
+          >
+            <div className="relative mx-auto md:mx-0 h-8 w-8 mr-4">
               <Image fill alt="Logo" src="/logo-sass.png" />
             </div>
             {/* TODO name Changeks */}
@@ -77,15 +81,20 @@ export default function SideBar() {
                 key={route.href}
                 href={route.href}
                 className={cn(
-                  "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition"
-                  //   pathname === route.href
-                  //     ? "text-white bg-white/10"
-                  //     : "text-zinc-400"
+                  "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
+                  pathname === route.href
+                    ? "text-white bg-white/10"
+                    : "text-zinc-400"
                 )}
               >
                 <div className="flex items-center flex-1">
-                  <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
-                  <span className="hidden md:flex">{route.label}</span>
+                  <route.icon
+                    className={cn(
+                      "h-8 w-8 mx-auto  md:mx-0 md:h-5 md:w-5 mr-3",
+                      route.color
+                    )}
+                  />
+                  <span className="hidden md:flex md:ml-2">{route.label}</span>
                 </div>
               </Link>
             ))}
