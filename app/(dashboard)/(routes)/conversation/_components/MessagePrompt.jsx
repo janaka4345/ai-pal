@@ -1,5 +1,5 @@
 "use client";
-import { formSchema } from "@/lib/shema";
+import { promptSchema } from "@/lib/shema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -13,9 +13,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-export default function MessageForm() {
+export default function MessagePrompt() {
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(promptSchema),
     defaultValues: {
       message: "",
     },
@@ -25,27 +25,26 @@ export default function MessageForm() {
 
   async function onSubmit(values) {
     const messages = values.message;
-    await new Promise((resolve) => setTimeout(resolve, 5000));
     try {
       //TODO Use server actions here
-      // const response = await fetch("/api/conversation", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     // Add any additional headers if needed
-      //   },
-      // body: JSON.stringify(messages),
-      // });
-      // if (!response.ok) {
-      //   throw new Error("Network response was not ok");
-      // }
+      const response = await fetch("/api/conversation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Add any additional headers if needed
+        },
+        body: JSON.stringify({ messages }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
       // Handle response data
-      // const responseData = await response.json();
-      // console.log("Response:", responseData);
+      const responseData = await response.json();
+      console.log(responseData);
     } catch (error) {
       console.log(error);
     }
-    console.log(messages);
+    // console.log(messages);
   }
   return (
     <Form {...form}>
@@ -60,7 +59,11 @@ export default function MessageForm() {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Input placeholder="Your Message" {...field} />
+                <Input
+                  disabled={isLoading}
+                  placeholder="Your Message"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>What do you want to know?</FormDescription>
               <FormMessage />
