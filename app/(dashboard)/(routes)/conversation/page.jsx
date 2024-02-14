@@ -1,6 +1,6 @@
 import { MessageSquare } from "lucide-react";
 import { Heading } from "@/components/custom/Heading";
-import MessageForm from "./components/MessageForm";
+import MessagePrompt from "./_components/MessagePrompt";
 
 export default function Conversation() {
   return (
@@ -12,7 +12,7 @@ export default function Conversation() {
         iconColor="text-violet-500"
         bgColor="bg-secondary"
       />
-      <MessageForm />
+      <MessagePrompt />
     </>
   );
 }
