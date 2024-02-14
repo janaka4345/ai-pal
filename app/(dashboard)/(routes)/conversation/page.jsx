@@ -13,6 +13,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { MessageSquare } from "lucide-react";
+import { Heading } from "@/components/custom/Heading";
 
 export default function Conversation() {
   const form = useForm({
@@ -25,6 +27,7 @@ export default function Conversation() {
   async function onSubmit(values) {
     try {
       const messages = { messages: values.username };
+      //TODO Use server actions here
       const response = await fetch("/api/conversation", {
         method: "POST",
         headers: {
@@ -49,9 +52,18 @@ export default function Conversation() {
 
   return (
     <>
-      <div>Conversation</div>
+      <Heading
+        title="Conversation"
+        description="something descriptive"
+        icon={MessageSquare}
+        iconColor="text-violet-500"
+        bgColor="bg-secondary"
+      />
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-fit mx-auto"
+        >
           <FormField
             control={form.control}
             name="username"

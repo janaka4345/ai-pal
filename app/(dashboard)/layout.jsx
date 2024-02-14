@@ -1,4 +1,5 @@
 import SideBar from "@/components/custom/SideBar";
+import { Suspense } from "react";
 
 export default function DashboardLayout({ children }) {
   return (
@@ -8,6 +9,8 @@ export default function DashboardLayout({ children }) {
           <SideBar />
         </div>
         <main className="w-full md:pl-72 pb-10 ">
+          {/* TODO */}
+          {/* <Suspense fallback={<h1>loading..</h1>}>{children}</Suspense> */}
           {children}
         </main>
       </div>
