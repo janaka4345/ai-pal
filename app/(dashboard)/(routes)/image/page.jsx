@@ -17,6 +17,7 @@ export default function Conversation() {
         iconColor="text-pink-500"
         bgColor="bg-pink-700/10"
       />
+      <h1>dalle 3 free tieer only allowes 1 image and resolution 1024 only</h1>
       <ImagePrompt images={images} setImages={setImages} />
       {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt

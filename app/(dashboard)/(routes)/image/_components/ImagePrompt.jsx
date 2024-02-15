@@ -46,7 +46,7 @@ export default function ImagePrompt({ images, setImages }) {
     try {
       // console.log({ newImages });
       //TODO Use server actions here
-      // const response = await axios.post("/api/image", values);
+      const response = await axios.post("/api/image", values);
 
       // setImages(response);
 
@@ -55,7 +55,7 @@ export default function ImagePrompt({ images, setImages }) {
       // }
       //   // Handle response data
       form.reset();
-      console.log({ values });
+      console.log({ response });
       // console.log({ response });
     } catch (error) {
       //   // TODO activate pro
