@@ -1,5 +1,5 @@
 "use client";
-import { promptSchema } from "@/lib/shema";
+import { codePromptSchema } from "@/lib/shema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -16,13 +16,13 @@ import {
 } from "@/components/ui/form";
 import axios from "axios";
 
-export default function MessagePrompt({ messages, setMessages }) {
+export default function CodePrompt({ messages, setMessages }) {
   const router = useRouter();
 
   const form = useForm({
-    resolver: zodResolver(promptSchema),
+    resolver: zodResolver(codePromptSchema),
     defaultValues: {
-      message: "",
+      prompt: "",
     },
   });
 
@@ -32,12 +32,12 @@ export default function MessagePrompt({ messages, setMessages }) {
     try {
       const userMessage = {
         role: "user",
-        content: values.message,
+        content: values.prompt,
       };
       const newMessages = [...messages, userMessage];
       // console.log({ newMessages });
       //TODO Use server actions here
-      const response = await axios.post("/api/conversation", {
+      const response = await axios.post("/api/code", {
         messages: newMessages,
       });
 
@@ -68,18 +68,18 @@ export default function MessagePrompt({ messages, setMessages }) {
         >
           <FormField
             control={form.control}
-            name="message"
+            name="prompt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>Prompt</FormLabel>
                 <FormControl>
                   <Input
                     disabled={isLoading}
-                    placeholder="Your Message"
+                    placeholder="Your Prompt to generate code"
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>What do you want to know?</FormDescription>
+                <FormDescription>Generate code</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

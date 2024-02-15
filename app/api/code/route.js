@@ -17,6 +17,12 @@ export async function POST(req) {
         // const { userId } = auth();
         const body = await req.json();
         const { messages } = body;
+
+        const instructions = {
+            role: 'system',
+            content: 'you are a code generator. you must answer only in markdown code snippets. Use code comments for explanations'
+
+        }
         // if (!userId) {
         //     return new NextResponse("Unauthorized", { status: 401 });
         // }
@@ -40,7 +46,7 @@ export async function POST(req) {
             // model: "gpt-3.5-turbo",
             // messages
             // messages: [{ role: 'user', content: messages }],
-            messages,
+            messages: [instructions, ...messages],
             model: 'gpt-3.5-turbo',
         });
 
@@ -50,7 +56,7 @@ export async function POST(req) {
 
         return NextResponse.json(response.choices[0].message, { status: 200 });
     } catch (error) {
-        console.log('[CONVERSATION_ERROR]', error);
+        console.log('[CODE_ERROR]', error);
         return new NextResponse("Internal Error", { status: 500 });
     }
 };
