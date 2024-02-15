@@ -1,5 +1,9 @@
 "use client";
-import { amountOptions, imagePromptSchema } from "@/lib/shema";
+import {
+  amountOptions,
+  imagePromptSchema,
+  resolutionOptions,
+} from "@/lib/shema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -31,7 +35,7 @@ export default function ImagePrompt({ images, setImages }) {
     defaultValues: {
       imagePrompt: "",
       amount: "",
-      resolution: "512x512",
+      resolution: "",
     },
   });
 
@@ -121,14 +125,26 @@ export default function ImagePrompt({ images, setImages }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Image resolution</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={isLoading}
-                    placeholder="256x256"
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>What do you want draw?</FormDescription>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select image resolution" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {resolutionOptions.map((resolutionOption) => (
+                      <SelectItem
+                        key={resolutionOption.value}
+                        value={resolutionOption.value}
+                      >
+                        {resolutionOption.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
