@@ -49,7 +49,7 @@ export async function POST(req) {
         //     await incrementApiLimit();
         // }
 
-        return NextResponse.json(response.choices[0].message);
+        return NextResponse.json(response.choices[0].message, { status: 200 });
     } catch (error) {
         console.log('[CONVERSATION_ERROR]', error);
         return new NextResponse("Internal Error", { status: 500 });

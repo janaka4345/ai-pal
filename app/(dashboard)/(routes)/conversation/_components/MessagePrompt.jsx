@@ -37,24 +37,23 @@ export default function MessagePrompt() {
         content: values.message,
       };
       const newMessages = [...messages, userMessage];
+      console.log({ newMessages });
       //TODO Use server actions here
       const response = await axios.post("/api/conversation", {
         messages: newMessages,
       });
-      console.log(response.data);
+
+      setMessages((currentMessages) => [
+        ...currentMessages,
+        userMessage,
+        response.data,
+      ]);
+
+      if (response.status != 200) {
+        throw new Error("Network response was not ok");
+      }
+      // Handle response data
       form.reset();
-      // setMessages((currentMessages) => [
-      //   ...currentMessages,
-      //   userMessage,
-      //   response.data,
-      // ]);
-      // if (!response.ok) {
-      //   throw new Error("Network response was not ok");
-      // }
-      // // Handle response data
-      // const responseData = await response.json();
-      // console.log(responseData);
-      // console.log({ response: response });
     } catch (error) {
       // TODO activate pro
       console.log(error);
@@ -63,33 +62,39 @@ export default function MessagePrompt() {
     }
   }
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 w-fit mx-auto"
-      >
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Message</FormLabel>
-              <FormControl>
-                <Input
-                  disabled={isLoading}
-                  placeholder="Your Message"
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>What do you want to know?</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button disabled={isLoading} type="submit">
-          {!isLoading ? "Submit" : "Submitting"}
-        </Button>
-      </form>
-    </Form>
+    <>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-fit mx-auto"
+        >
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Message</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={isLoading}
+                    placeholder="Your Message"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>What do you want to know?</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button disabled={isLoading} type="submit">
+            {!isLoading ? "Submit" : "Submitting"}
+          </Button>
+        </form>
+      </Form>
+      {/* TODO add conversaation style message output 
+      consider st5ramnig output like chatgpt
+      */}
+      <pre>{JSON.stringify(messages, null, 2)}</pre>
+    </>
   );
 }
