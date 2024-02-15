@@ -3,6 +3,9 @@ import { promptSchema } from "@/lib/shema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -12,8 +15,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import axios from "axios";
+
 export default function MessagePrompt() {
+  const router = useRouter();
+  const [messages, setMessages] = useState([]);
+
   const form = useForm({
     resolver: zodResolver(promptSchema),
     defaultValues: {
@@ -24,27 +31,36 @@ export default function MessagePrompt() {
   const isLoading = form.formState.isSubmitting;
 
   async function onSubmit(values) {
-    const messages = values.message;
     try {
+      const userMessage = {
+        role: "user",
+        content: values.message,
+      };
+      const newMessages = [...messages, userMessage];
       //TODO Use server actions here
-      const response = await fetch("/api/conversation", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // Add any additional headers if needed
-        },
-        body: JSON.stringify({ messages }),
+      const response = await axios.post("/api/conversation", {
+        messages: newMessages,
       });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      // Handle response data
-      const responseData = await response.json();
-      console.log(responseData);
+      console.log(response.data);
+      form.reset();
+      // setMessages((currentMessages) => [
+      //   ...currentMessages,
+      //   userMessage,
+      //   response.data,
+      // ]);
+      // if (!response.ok) {
+      //   throw new Error("Network response was not ok");
+      // }
+      // // Handle response data
+      // const responseData = await response.json();
+      // console.log(responseData);
+      // console.log({ response: response });
     } catch (error) {
+      // TODO activate pro
       console.log(error);
+    } finally {
+      router.refresh();
     }
-    // console.log(messages);
   }
   return (
     <Form {...form}>
