@@ -5,16 +5,16 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import axios from "axios";
+import { ChatBubbleIcon } from "@radix-ui/react-icons";
 
 export default function MessagePrompt({ messages, setMessages }) {
   const router = useRouter();
@@ -70,23 +70,33 @@ export default function MessagePrompt({ messages, setMessages }) {
             control={form.control}
             name="message"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message</FormLabel>
+              <FormItem className="w-[800px]">
                 <FormControl>
-                  <Input
-                    disabled={isLoading}
-                    placeholder="Your Message"
-                    {...field}
-                  />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <ChatBubbleIcon />
+                    </div>
+
+                    <Input
+                      className="pl-10"
+                      disabled={isLoading}
+                      placeholder="Chat with AI"
+                      {...field}
+                    />
+                    <Button
+                      variant="small"
+                      className="absolute end-0 bottom-0"
+                      disabled={isLoading || field.value === ""}
+                      type="submit"
+                    >
+                      {!isLoading ? "Send" : "Sending"}
+                    </Button>
+                  </div>
                 </FormControl>
-                <FormDescription>What do you want to know?</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button disabled={isLoading} type="submit">
-            {!isLoading ? "Submit" : "Submitting"}
-          </Button>
         </form>
       </Form>
     </>
