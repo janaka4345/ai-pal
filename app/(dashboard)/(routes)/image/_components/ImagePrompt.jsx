@@ -42,6 +42,7 @@ export default function ImagePrompt({ images, setImages }) {
   const isLoading = form.formState.isSubmitting;
 
   async function onSubmit(values) {
+    console.log(values);
     setImages([]);
     try {
       // console.log({ newImages });
@@ -54,8 +55,19 @@ export default function ImagePrompt({ images, setImages }) {
       //   throw new Error("Network response was not ok");
       // }
       //   // Handle response data
-      form.reset();
-      console.log({ response });
+
+      // const urls=response.data.map(url=>(
+
+      // ))
+      const urls = response.data.data;
+      setImages(urls);
+      console.log(urls);
+      form.reset({
+        imagePrompt: "",
+        amount: "",
+        resolution: "",
+      });
+
       // console.log({ response });
     } catch (error) {
       //   // TODO activate pro
@@ -96,8 +108,9 @@ export default function ImagePrompt({ images, setImages }) {
               <FormItem>
                 <FormLabel>Number of images needed</FormLabel>
                 <Select
+                  disabled={isLoading}
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  // defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -126,8 +139,9 @@ export default function ImagePrompt({ images, setImages }) {
               <FormItem>
                 <FormLabel>Image resolution</FormLabel>
                 <Select
+                  disabled={isLoading}
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  // defaultValue={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
