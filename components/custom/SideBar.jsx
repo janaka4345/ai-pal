@@ -36,6 +36,12 @@ const routes = [
     href: "/image",
   },
   {
+    label: "Replicate Image Generation",
+    icon: ImageIcon,
+    color: "text-pink-700",
+    href: "/imageReplicate",
+  },
+  {
     label: "Video Generation",
     icon: VideoIcon,
     color: "text-orange-700",
