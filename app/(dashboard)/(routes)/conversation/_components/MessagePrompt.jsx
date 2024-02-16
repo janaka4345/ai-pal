@@ -61,10 +61,10 @@ export default function MessagePrompt({ messages, setMessages }) {
   }
   return (
     <>
-      <Form {...form}>
+      <Form className="" {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-fit mx-auto"
+          className="space-y-8 w-fit mt-auto mx-auto"
         >
           <FormField
             control={form.control}
@@ -84,7 +84,8 @@ export default function MessagePrompt({ messages, setMessages }) {
                       {...field}
                     />
                     <Button
-                      variant="small"
+                      size="sm"
+                      variant="outline"
                       className="absolute end-0 bottom-0"
                       disabled={isLoading || field.value === ""}
                       type="submit"

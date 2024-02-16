@@ -16,11 +16,15 @@ export default function Conversation() {
         iconColor="text-violet-500"
         bgColor="bg-secondary"
       />
-      <MessagePrompt messages={messages} setMessages={setMessages} />
+      <div className="w-full h-[400px] flex flex-col">
+        <div className="h-[300px] overflow-y-auto overflow-x-clip">
+          <pre>{JSON.stringify(messages, null, 2)}</pre>
+        </div>
+        <MessagePrompt messages={messages} setMessages={setMessages} />
+      </div>
       {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
       */}
-      <pre>{JSON.stringify(messages, null, 2)}</pre>
     </>
   );
 }
