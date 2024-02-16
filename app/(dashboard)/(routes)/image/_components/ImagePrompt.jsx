@@ -62,6 +62,7 @@ export default function ImagePrompt({ images, setImages }) {
       const urls = response.data.data;
       setImages(urls);
       console.log(urls);
+      // TODO form fselet fields arnt resreting
       form.reset({
         imagePrompt: "",
         amount: "",
