@@ -2,16 +2,15 @@ import { NextResponse } from "next/server";
 import Replicate from "replicate";
 
 
-const replicate = new Replicate(
-    //     {
-    //     auth:apikey
-    // }
-);
+const replicate = new Replicate({
+    auth: process.env.REPLICATE_API_TOKEN
+});
 export async function POST(req) {
     try {
         // const { userId } = auth();
         const body = await req.json();
-        const { imagePrompt } = body;
+        const { musicPrompt } = body;
+        console.log(musicPrompt);
         // if (!userId) {
         //     return new NextResponse("Unauthorized", { status: 401 });
         // }
@@ -32,13 +31,20 @@ export async function POST(req) {
         // }
 
         const response = await replicate.run(
-            "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+            "riffusion/riffusion:8cf61ea6c56afd61d8f5b9ffd14d7c216c0a93844ce2d82ac1c9ecc9c7f24e05",
             {
                 input: {
-                    prompt: imagePrompt,
+                    alpha: 0.5,
+                    prompt_a: musicPrompt,
+                    prompt_b: "90's rap",
+                    denoising: 0.75,
+                    seed_image_id: "vibes",
+                    num_inference_steps: 50
                 }
             }
         );
+        console.log(response);
+        console.log(response);
         // if (!isPro) {
         //     await incrementApiLimit();
         // }
