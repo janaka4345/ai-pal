@@ -1,17 +1,24 @@
+"use client";
 import React from "react";
 import { Button } from "../ui/button";
 import { Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function MessageBubble({ message, avatar, role }) {
   return (
     <div
-      className={cn("flex  items-start  gap-2.5 m-10   w-fit", {
+      className={cn("flex  items-start  gap-2.5 m-10 min-w-[200px]   w-fit", {
         "ml-auto flex-row-reverse ": role === "user",
         "ml-10 flex-row ": role === "assistant",
       })}
     >
-      <img className="w-8 h-8 rounded-full" src={avatar} alt="Jese image" />
+      <img className="w-8 h-8 rounded-full" src={avatar} alt="avatar image" />
       <div
         className={cn(
           "flex flex-col relative w-full max-w-[320px] leading-1.5 p-4 border-gray-200   ",
@@ -23,15 +30,16 @@ export default function MessageBubble({ message, avatar, role }) {
       >
         <div className="flex items-center space-x-2 rtl:space-x-reverse">
           <span className="text-sm font-semibold text-gray-900 ">
-            Bonnie Green
+            {role === "user" ? "Bonnie Green" : "AI Assistant"}
           </span>
         </div>
         <p className="text-sm font-normal py-2.5 text-gray-900 ">{message}</p>
         {role === "assistant" && (
           <Button
-            variant="ghost"
+            onClick={() => navigator.clipboard.writeText(message)}
+            variant="ghostCopy"
             size="icon"
-            className="absolute top-0 right-0"
+            className="absolute top-0 right-0 "
           >
             <Copy className="w-5 h-5" />
           </Button>

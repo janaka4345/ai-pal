@@ -3,6 +3,7 @@ import { MessageSquare } from "lucide-react";
 import { Heading } from "@/components/custom/Heading";
 import MessagePrompt from "./_components/MessagePrompt";
 import { useEffect, useRef, useState } from "react";
+import MessageBubble from "@/components/custom/MessageBubble";
 
 export default function Conversation() {
   const [messages, setMessages] = useState([]);
@@ -28,7 +29,16 @@ export default function Conversation() {
           ref={containerRef}
           className="h-[300px] overflow-y-auto overflow-x-clip"
         >
-          <pre>{JSON.stringify(messages, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(messages, null, 2)}</pre> */}
+          {messages.map((message, i) => (
+            <MessageBubble
+              message={message.content}
+              avatar={
+                message.role === "user" ? "/avatar.png" : "/ai avatar.png"
+              }
+              role={message.role}
+            />
+          ))}
         </div>
         <MessagePrompt messages={messages} setMessages={setMessages} />
       </div>
