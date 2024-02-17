@@ -2,10 +2,17 @@
 import { MessageSquare } from "lucide-react";
 import { Heading } from "@/components/custom/Heading";
 import MessagePrompt from "./_components/MessagePrompt";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Conversation() {
   const [messages, setMessages] = useState([]);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   return (
     <>
@@ -17,7 +24,10 @@ export default function Conversation() {
         bgColor="bg-secondary"
       />
       <div className="w-full h-[400px] flex flex-col">
-        <div className="h-[300px] overflow-y-auto overflow-x-clip">
+        <div
+          ref={containerRef}
+          className="h-[300px] overflow-y-auto overflow-x-clip"
+        >
           <pre>{JSON.stringify(messages, null, 2)}</pre>
         </div>
         <MessagePrompt messages={messages} setMessages={setMessages} />
