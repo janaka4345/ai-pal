@@ -45,7 +45,7 @@ export async function POST(req) {
         // if (!isPro) {
         //     await incrementApiLimit();
         // }
-
+        console.log(response);
         return NextResponse.json(response, { status: 200 });
     } catch (error) {
         console.log('[IMAGE_ERROR]', error);
