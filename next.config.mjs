@@ -8,6 +8,11 @@ const nextConfig = {
                 hostname: 'replicate.delivery',
                 port: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'oaidalleapiprodscus.blob.core.windows.net',
+                port: '',
+            },
         ],
     },
 }
