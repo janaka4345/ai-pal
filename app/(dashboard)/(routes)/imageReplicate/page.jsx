@@ -23,7 +23,7 @@ export default function Conversation() {
       */}
       {/* <pre>{JSON.stringify(images, null, 2)}</pre> */}
       {images.map((image, i) => (
-        <img key={i} src={image} alt="horse" />
+        <img key={i * 10 + 10} src={image} alt="horse" />
       ))}
     </>
   );

@@ -1,9 +1,5 @@
 "use client";
-import {
-  amountOptions,
-  imagePromptSchema,
-  resolutionOptions,
-} from "@/lib/shema";
+import { imagePromptSchema } from "@/lib/shema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -27,6 +23,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+export const amountOptions = [
+  { value: "1", label: "1 photo" },
+  { value: "2", label: "2 photos" },
+  { value: "3", label: "3 photos" },
+  { value: "4", label: "4 photos" },
+];
+export const resolutionOptions = [
+  { value: "256", label: "256x256" },
+  { value: "512", label: "512x512" },
+  { value: "1024", label: "1024x1024" },
+];
+
 export default function ImagePrompt({ images, setImages }) {
   const router = useRouter();
 
@@ -48,7 +56,7 @@ export default function ImagePrompt({ images, setImages }) {
       // console.log({ newImages });
       //TODO Use server actions here
       const response = await axios.post("/api/imageReplicate", values);
-
+      console.log(values);
       // setImages(response);
 
       // if (response.status != 200) {
