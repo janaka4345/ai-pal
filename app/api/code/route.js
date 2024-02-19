@@ -20,7 +20,7 @@ export async function POST(req) {
 
         const instructions = {
             role: 'system',
-            content: 'you are a code generator. you must answer only in markdown code snippets. Use code comments for explanations. use markdown for other conversations and code explanations '
+            content: 'you are a code generator. you must answer only in markdown code snippets. must provide  comments with  explanations '
 
         }
         // if (!userId) {

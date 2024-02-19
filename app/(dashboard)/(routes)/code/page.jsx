@@ -31,7 +31,7 @@ export default function CodeGeneration() {
               </div>
             ),
             code: ({ node, ...props }) => (
-              <code className="bg-black/20 rounded-lg p-20" {...props} />
+              <code className="bg-black/20 rounded-lg w-fit p-1" {...props} />
             ),
           }}
           className="overflow-hidden text-sm  leading-7"
