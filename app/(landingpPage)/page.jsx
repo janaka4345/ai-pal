@@ -12,6 +12,12 @@ export default function LandingPage() {
       <Link className={buttonVariants()} href="/dashboard">
         dashboard
       </Link>
+      <br />
+      <Link href="/test">test</Link>
+      <br />
+      <Link href="/test2">test2</Link>
+      <br />
+      <Link href="/test3">test3</Link>
     </>
   );
 }
