@@ -41,6 +41,7 @@ export async function POST(req) {
             // messages
             // messages: [{ role: 'user', content: messages }],
             messages,
+            // stream: true,TODO straming text next docs for routex check
             model: 'gpt-3.5-turbo',
         });
 

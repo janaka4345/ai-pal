@@ -18,6 +18,10 @@ export default function LandingPage() {
       <Link href="/test2">test2</Link>
       <br />
       <Link href="/test3">test3</Link>
+      <br />
+      <Link href="/test4">test4</Link>
+      <br />
+      <Link href="/test5">test5</Link>
     </>
   );
 }
