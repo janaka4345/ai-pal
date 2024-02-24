@@ -61,16 +61,16 @@ export default function MessagePrompt({ messages, setMessages }) {
   }
   return (
     <>
-      <Form {...form}>
+      <Form className="" {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full mt-auto mx-auto"
+          className="space-y-8 w-fit mt-auto mx-auto"
         >
           <FormField
             control={form.control}
             name="message"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-[800px]">
                 <FormControl>
                   <div className="relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

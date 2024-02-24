@@ -11,16 +11,8 @@ export default function Conversation() {
 
   useEffect(() => {
     if (containerRef.current) {
-      console.log({
-        1: containerRef.current.scrollHeight,
-        2: containerRef.current.scrollTop,
-      });
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-    console.log({
-      3: containerRef.current.scrollHeight,
-      4: containerRef.current.scrollTop,
-    });
   }, [messages]);
 
   return (
@@ -32,8 +24,11 @@ export default function Conversation() {
         iconColor="text-violet-500"
         bgColor="bg-secondary"
       />
-      <div className="w-full  flex flex-col">
-        <div ref={containerRef} className=" overflow-y-auto overflow-x-clip">
+      <div className="w-full h-[400px] flex flex-col">
+        <div
+          ref={containerRef}
+          className="h-[300px] overflow-y-auto overflow-x-clip"
+        >
           {messages.map((message, i) => (
             <MessageBubble
               key={i}
@@ -45,9 +40,7 @@ export default function Conversation() {
             />
           ))}
         </div>
-        <div className=" fixed bottom-0 right-0 left-72 m-4 mb-0 pb-4 bg-white">
-          <MessagePrompt messages={messages} setMessages={setMessages} />
-        </div>
+        <MessagePrompt messages={messages} setMessages={setMessages} />
       </div>
       {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
