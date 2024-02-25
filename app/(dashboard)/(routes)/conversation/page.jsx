@@ -2,7 +2,7 @@
 import { MessageSquare } from "lucide-react";
 import { Heading } from "@/components/custom/Heading";
 import MessagePrompt from "./_components/MessagePrompt";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MessageBubble from "@/components/custom/MessageBubble";
 
 export default function Conversation() {

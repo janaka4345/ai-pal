@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import axios from "axios";
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
-import { Assistant } from "next/font/google";
+import Spinner from "@/components/custom/Spinner";
 
 export default function MessagePrompt({ messages, setMessages }) {
   const router = useRouter();
@@ -67,10 +67,10 @@ export default function MessagePrompt({ messages, setMessages }) {
   }
   return (
     <>
-      <Form className="" {...form}>
+      <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full "
+          className="space-y-8 w-[80%] mx-auto  "
         >
           <FormField
             control={form.control}
@@ -79,8 +79,8 @@ export default function MessagePrompt({ messages, setMessages }) {
               <FormItem>
                 <FormControl>
                   <div className="relative">
-                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                      <ChatBubbleIcon />
+                    <div className="absolute  inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <ChatBubbleIcon className="text-violet-500 " />
                     </div>
 
                     <Input
@@ -96,7 +96,7 @@ export default function MessagePrompt({ messages, setMessages }) {
                       disabled={isLoading || field.value === ""}
                       type="submit"
                     >
-                      {!isLoading ? "Send" : "Sending"}
+                      {!isLoading ? "Send" : <Spinner text="Sending..." />}
                     </Button>
                   </div>
                 </FormControl>

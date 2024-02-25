@@ -3,12 +3,14 @@ import React from "react";
 import { Button } from "../ui/button";
 import { Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import LoadingSkeleton from "@/app/(dashboard)/(routes)/conversation/_components/LoadingSkeleton";
 
 export default function MessageBubble({ message, avatar, role }) {
   return (
@@ -33,8 +35,14 @@ export default function MessageBubble({ message, avatar, role }) {
             {role === "user" ? "Bonnie Green" : "AI Assistant"}
           </span>
         </div>
-        <p className="text-sm font-normal py-2.5 text-gray-900 ">{message}</p>
-        {role === "assistant" && (
+
+        {message === "loading" ? (
+          <LoadingSkeleton />
+        ) : (
+          <p className="text-sm font-normal py-2.5 text-gray-900 ">{message}</p>
+        )}
+
+        {role === "assistant" && message != "loading" && (
           <Button
             onClick={() => navigator.clipboard.writeText(message)}
             variant="ghostCopy"
