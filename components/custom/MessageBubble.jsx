@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 //   TooltipProvider,
 //   TooltipTrigger,
 // } from "@/components/ui/tooltip";
-import LoadingSkeleton from "@/app/(dashboard)/(routes)/conversation/_components/LoadingSkeleton";
+import LoadingSkeleton from "@/components/custom/LoadingSkeleton";
 
 export default function MessageBubble({ message, avatar, role }) {
   return (

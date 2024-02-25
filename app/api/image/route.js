@@ -16,7 +16,7 @@ export async function POST(req) {
     try {
         // const { userId } = auth();
         const body = await req.json();
-        const { imagePrompt, amount, resolution } = body;
+        const { imagePrompt } = body;
         // if (!userId) {
         //     return new NextResponse("Unauthorized", { status: 401 });
         // }
@@ -40,8 +40,8 @@ export async function POST(req) {
             // const response = await openai.createImage({
             model: "dall-e-2",
             prompt: imagePrompt,
-            n: parseInt(amount, 10),
-            size: resolution
+            n: 4,
+            size: '1024x1024'
         });
 
         // if (!isPro) {

@@ -21,8 +21,8 @@ export default function Conversation() {
         iconColor="text-pink-500"
         bgColor="bg-pink-700/10"
       />
-      <h1>dalle 3 free tier only allowes 1 image and resolution 1024 only</h1>
-      <h1>dalle 2free tier only allowes 5 image per min</h1>
+      {/* dalle 3 free tier only allowes 1 image and resolution 1024 only
+      dalle 2free tier only allowes 5 image per min */}
       <ImagePrompt images={images} setImages={setImages} />
 
       {/* TODO add conversaation style message output 
