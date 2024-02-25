@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import axios from "axios";
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
+import { Assistant } from "next/font/google";
 
 export default function MessagePrompt({ messages, setMessages }) {
   const router = useRouter();
@@ -29,23 +30,28 @@ export default function MessagePrompt({ messages, setMessages }) {
   const isLoading = form.formState.isSubmitting;
 
   async function onSubmit(values) {
+    const userMessage = {
+      role: "user",
+      content: values.message,
+    };
+    const newMessages = [...messages, userMessage];
+    setMessages((currentMessages) => [
+      ...currentMessages,
+      userMessage,
+      { role: "assistant", content: "loading" },
+    ]);
     try {
-      const userMessage = {
-        role: "user",
-        content: values.message,
-      };
-      const newMessages = [...messages, userMessage];
-      // console.log({ newMessages });
+      console.log({ newMessages });
       //TODO Use server actions here
       const response = await axios.post("/api/conversation", {
         messages: newMessages,
       });
 
-      setMessages((currentMessages) => [
-        ...currentMessages,
-        userMessage,
-        response.data,
-      ]);
+      setMessages((currentMessages) => {
+        const updateArray = [...currentMessages];
+        updateArray[updateArray.length - 1] = response.data;
+        return updateArray;
+      });
 
       if (response.status != 200) {
         throw new Error("Network response was not ok");
@@ -64,13 +70,13 @@ export default function MessagePrompt({ messages, setMessages }) {
       <Form className="" {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-fit mt-auto mx-auto"
+          className="space-y-8 w-full "
         >
           <FormField
             control={form.control}
             name="message"
             render={({ field }) => (
-              <FormItem className="w-[800px]">
+              <FormItem>
                 <FormControl>
                   <div className="relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

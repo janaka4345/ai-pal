@@ -2,7 +2,7 @@
 import { MessageSquare } from "lucide-react";
 import { Heading } from "@/components/custom/Heading";
 import MessagePrompt from "./_components/MessagePrompt";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import MessageBubble from "@/components/custom/MessageBubble";
 
 export default function Conversation() {
@@ -24,10 +24,11 @@ export default function Conversation() {
         iconColor="text-violet-500"
         bgColor="bg-secondary"
       />
-      <div className="w-full h-[400px] flex flex-col">
+      {/* must spesify a height for use effect scrolling to work */}
+      <div className=" h-[85%]  flex flex-col">
         <div
           ref={containerRef}
-          className="h-[300px] overflow-y-auto overflow-x-clip"
+          className="h-[90%] overflow-y-auto overflow-x-clip"
         >
           {messages.map((message, i) => (
             <MessageBubble
@@ -40,7 +41,11 @@ export default function Conversation() {
             />
           ))}
         </div>
-        <MessagePrompt messages={messages} setMessages={setMessages} />
+        <MessagePrompt
+          className="border-2 border-black"
+          messages={messages}
+          setMessages={setMessages}
+        />
       </div>
       {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
