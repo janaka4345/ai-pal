@@ -41,11 +41,7 @@ export default function Conversation() {
             />
           ))}
         </div>
-        <MessagePrompt
-          className="border-2 border-black"
-          messages={messages}
-          setMessages={setMessages}
-        />
+        <MessagePrompt messages={messages} setMessages={setMessages} />
       </div>
       {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
