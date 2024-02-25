@@ -3,13 +3,12 @@ import React from "react";
 import { Button } from "../ui/button";
 import { Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+// import {
+//   Tooltip,
+//   TooltipContent,
+//   TooltipProvider,
+//   TooltipTrigger,
+// } from "@/components/ui/tooltip";
 import LoadingSkeleton from "@/app/(dashboard)/(routes)/conversation/_components/LoadingSkeleton";
 
 export default function MessageBubble({ message, avatar, role }) {

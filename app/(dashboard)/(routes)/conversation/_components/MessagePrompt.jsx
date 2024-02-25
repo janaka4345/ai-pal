@@ -15,11 +15,8 @@ import {
 import axios from "axios";
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
 import Spinner from "@/components/custom/Spinner";
-import { useEffect, useRef } from "react";
 
 export default function MessagePrompt({ messages, setMessages }) {
-  const inputRef = useRef(null);
-
   const form = useForm({
     resolver: zodResolver(promptSchema),
     defaultValues: {
@@ -41,7 +38,6 @@ export default function MessagePrompt({ messages, setMessages }) {
       { role: "assistant", content: "loading" },
     ]);
     try {
-      console.log({ newMessages });
       //TODO Use server actions here
       const response = await axios.post("/api/conversation", {
         messages: newMessages,
@@ -63,11 +59,6 @@ export default function MessagePrompt({ messages, setMessages }) {
       console.log(error);
     }
   }
-
-  useEffect(() => {
-    // inputRef.current.focus();
-    console.log(inputRef);
-  }, []);
 
   return (
     <>
