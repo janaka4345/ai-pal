@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -16,9 +15,10 @@ import {
 import axios from "axios";
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
 import Spinner from "@/components/custom/Spinner";
+import { useEffect, useRef } from "react";
 
 export default function MessagePrompt({ messages, setMessages }) {
-  const router = useRouter();
+  const inputRef = useRef(null);
 
   const form = useForm({
     resolver: zodResolver(promptSchema),
@@ -61,10 +61,14 @@ export default function MessagePrompt({ messages, setMessages }) {
     } catch (error) {
       // TODO activate pro
       console.log(error);
-    } finally {
-      router.refresh();
     }
   }
+
+  useEffect(() => {
+    // inputRef.current.focus();
+    console.log(inputRef);
+  }, []);
+
   return (
     <>
       <Form {...form}>
@@ -84,15 +88,16 @@ export default function MessagePrompt({ messages, setMessages }) {
                     </div>
 
                     <Input
-                      className="pl-10"
+                      autoFocus
+                      className="pl-10 "
                       disabled={isLoading}
                       placeholder="Chat with AI"
                       {...field}
                     />
                     <Button
                       size="sm"
-                      variant="outline"
-                      className="absolute end-0 bottom-0"
+                      variant="send"
+                      className="absolute end-0 bottom-0.5"
                       disabled={isLoading || field.value === ""}
                       type="submit"
                     >
