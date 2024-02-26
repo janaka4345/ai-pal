@@ -7,10 +7,7 @@ import { Image as LucidImage } from "lucide-react";
 import ImageCard from "./_components/ImageCard";
 
 export default function Conversation() {
-  const [images, setImages] = useState([
-    "https://replicate.delivery/pbxt/Ow8jZAZN5bZjCJtdDKpfxxyMH6VZKBUKRTAqvQQMGefo5xwkA/out-0.png",
-    "https://replicate.delivery/pbxt/yrDDApPBnHZhIRMYsz92T9Km8e8qa5pRM4HiXs8gTgkaeYYSA/out-1.png",
-  ]);
+  const [images, setImages] = useState([]);
 
   return (
     <>

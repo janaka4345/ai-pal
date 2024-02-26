@@ -15,25 +15,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-export const amountOptions = [
-  { value: "1", label: "1 photo" },
-  { value: "2", label: "2 photos" },
-  { value: "3", label: "3 photos" },
-  { value: "4", label: "4 photos" },
-];
-export const resolutionOptions = [
-  { value: "256", label: "256x256" },
-  { value: "512", label: "512x512" },
-  { value: "1024", label: "1024x1024" },
-];
+import Spinner from "@/components/custom/Spinner";
+import { ChatBubbleIcon } from "@radix-ui/react-icons";
 
 export default function ImagePrompt({ images, setImages }) {
   const router = useRouter();
@@ -42,8 +25,6 @@ export default function ImagePrompt({ images, setImages }) {
     resolver: zodResolver(imagePromptSchema),
     defaultValues: {
       imagePrompt: "",
-      amount: "",
-      resolution: "",
     },
   });
 
@@ -56,7 +37,6 @@ export default function ImagePrompt({ images, setImages }) {
       // console.log({ newImages });
       //TODO Use server actions here
       const response = await axios.post("/api/imageReplicate", values);
-      console.log(values);
       // setImages(response);
 
       // if (response.status != 200) {
@@ -72,8 +52,6 @@ export default function ImagePrompt({ images, setImages }) {
       // TODO form fselet fields arnt resreting
       form.reset({
         imagePrompt: "",
-        amount: "",
-        resolution: "",
       });
 
       // console.log({ response });
@@ -89,91 +67,43 @@ export default function ImagePrompt({ images, setImages }) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-fit mx-auto"
+          className="space-y-8 w-[80%] mx-auto"
         >
           <FormField
             control={form.control}
             name="imagePrompt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image Prompt</FormLabel>
                 <FormControl>
-                  <Input
-                    disabled={isLoading}
-                    placeholder="Your Image Prompt"
-                    {...field}
-                  />
+                  <div className="relative">
+                    <div className="absolute  inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <ChatBubbleIcon className="text-violet-500 " />
+                    </div>
+                    <Input
+                      autoFocus
+                      className="pl-10 "
+                      disabled={isLoading}
+                      placeholder="Your Image Prompt"
+                      {...field}
+                    />
+                    <Button
+                      size="sm"
+                      variant="send"
+                      className="absolute end-0 bottom-0.5"
+                      disabled={isLoading || field.value === ""}
+                      type="submit"
+                    >
+                      {!isLoading ? (
+                        "Generate"
+                      ) : (
+                        <Spinner text="Generating..." />
+                      )}
+                    </Button>
+                  </div>
                 </FormControl>
-                <FormDescription>What do you want draw?</FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="amount"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Number of images needed</FormLabel>
-                <Select
-                  disabled={isLoading}
-                  onValueChange={field.onChange}
-                  // defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select number of images required" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {amountOptions.map((amountOption) => (
-                      <SelectItem
-                        key={amountOption.value}
-                        value={amountOption.value}
-                      >
-                        {amountOption.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="resolution"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Image resolution</FormLabel>
-                <Select
-                  disabled={isLoading}
-                  onValueChange={field.onChange}
-                  // defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select image resolution" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {resolutionOptions.map((resolutionOption) => (
-                      <SelectItem
-                        key={resolutionOption.value}
-                        value={resolutionOption.value}
-                      >
-                        {resolutionOption.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button disabled={isLoading} type="submit">
-            {!isLoading ? "Submit" : "Submitting"}
-          </Button>
         </form>
       </Form>
     </>

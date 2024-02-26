@@ -11,7 +11,7 @@ export async function POST(req) {
     try {
         // const { userId } = auth();
         const body = await req.json();
-        const { imagePrompt, amount, resolution } = body;
+        const { imagePrompt } = body;
         // if (!userId) {
         //     return new NextResponse("Unauthorized", { status: 401 });
         // }
@@ -36,16 +36,16 @@ export async function POST(req) {
             {
                 input: {
                     prompt: imagePrompt,
-                    num_outputs: parseInt(amount, 10),
-                    width: parseInt(resolution, 10),
-                    height: parseInt(resolution, 10),
+                    num_outputs: 4,
+                    width: 1024,
+                    height: 1024,
                 }
             }
         );
         // if (!isPro) {
         //     await incrementApiLimit();
         // }
-        console.log(response);
+
         return NextResponse.json(response, { status: 200 });
     } catch (error) {
         console.log('[IMAGE_ERROR]', error);

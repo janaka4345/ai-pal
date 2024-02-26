@@ -24,17 +24,12 @@ export default function ImageCard({ image }) {
         <CardContent className="p-0 pb-6">
           <div className="relative aspect-square ">
             <DialogTrigger>
-              <Image
-                alt="image"
-                fill
-                src="/out-0.png"
-                className="cursor-pointer"
-              />
+              <Image alt="image" fill src={image} className="cursor-pointer" />
             </DialogTrigger>
           </div>
         </CardContent>
         <DialogContent className="w-3/4 h-5/6 ">
-          <Image alt="image" fill src="/out-0.png" className="cursor-pointer" />
+          <Image alt="image" fill src={image} className="cursor-pointer" />
           {/* <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
               <DialogDescription>
@@ -47,9 +42,9 @@ export default function ImageCard({ image }) {
 
       <CardFooter className="justify-center">
         <Button
-          onClick={() =>
-            handleDownloadFileAtUrl("http://localhost:3000/out-0.png")
-          }
+        // onClick={() =>
+        //   handleDownloadFileAtUrl("http://localhost:3000/out-0.png")
+        // }
         >
           Download
         </Button>

@@ -13,15 +13,15 @@ export default function LandingPage() {
         dashboard
       </Link>
       <br />
-      <Link href="/test">test</Link>
+      <Link href="/testall/test">test</Link>
       <br />
-      <Link href="/test2">test2</Link>
+      <Link href="/testall/test2">test2</Link>
       <br />
-      <Link href="/test3">test3</Link>
+      <Link href="/testall/test3">test3</Link>
       <br />
-      <Link href="/test4">test4</Link>
+      <Link href="/testall/test4">test4</Link>
       <br />
-      <Link href="/test5">test5</Link>
+      <Link href="/testall/test5">test5</Link>
     </>
   );
 }

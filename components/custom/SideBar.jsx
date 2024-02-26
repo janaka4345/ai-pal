@@ -33,7 +33,7 @@ const routes = [
     label: "Image Generation",
     icon: ImageIcon,
     color: "text-pink-700",
-    href: "/image",
+    href: "/image-gen",
   },
   {
     label: "Replicate Image Generation",

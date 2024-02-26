@@ -73,8 +73,6 @@ export default function ImagePrompt({ images, setImages }) {
       // TODO form fselet fields arnt resreting
       form.reset({
         imagePrompt: "",
-        amount: "",
-        resolution: "",
       });
 
       // console.log({ response });
