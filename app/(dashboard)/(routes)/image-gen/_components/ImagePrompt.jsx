@@ -17,27 +17,8 @@ import {
 } from "@/components/ui/form";
 import Spinner from "@/components/custom/Spinner";
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
 
-// export const amountOptions = [
-//   { value: "1", label: "1 photo" },
-//   { value: "2", label: "2 photos" },
-//   { value: "3", label: "3 photos" },
-//   { value: "4", label: "4 photos" },
-// ];
-// export const resolutionOptions = [
-//   { value: "256x256", label: "256x256" },
-//   { value: "512x512", label: "512x512" },
-//   { value: "1024x1024", label: "1024x1024" },
-// ];
-
-export default function ImagePrompt({ images, setImages }) {
+export default function ImagePrompt({ messages, setMessages }) {
   const router = useRouter();
 
   const form = useForm({
@@ -51,13 +32,17 @@ export default function ImagePrompt({ images, setImages }) {
 
   async function onSubmit(values) {
     console.log(values);
-    setImages([]);
+    setMessages((currentMessages) => [
+      ...currentMessages,
+      { role: "user", content: values.imagePrompt },
+      { role: "assistant", content: "loading" },
+    ]);
     try {
-      // console.log({ newImages });
+      // console.log({ newmessages });
       //TODO Use server actions here
       const response = await axios.post("/api/image", values);
 
-      // setImages(response);
+      // setMessages(response);
 
       // if (response.status != 200) {
       //   throw new Error("Network response was not ok");
@@ -68,8 +53,17 @@ export default function ImagePrompt({ images, setImages }) {
 
       // ))
       const urls = response.data.data;
-      setImages(urls);
-      console.log(urls);
+      setMessages((currentMessages) => {
+        const updateArray = [...currentMessages];
+        updateArray.pop();
+        urls.forEach((url) => {
+          updateArray.push({ role: "assistant", content: url.url });
+        });
+        console.log(updateArray);
+
+        return updateArray;
+      });
+      console.log(messages);
       // TODO form fselet fields arnt resreting
       form.reset({
         imagePrompt: "",
