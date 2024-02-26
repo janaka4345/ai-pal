@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import MessageBubble from "@/components/custom/MessageBubble";
+import ImageBubble from "@/components/custom/ImageBubble";
 
 export default function Conversation() {
   const [messages, setMessages] = useState([]);
@@ -34,7 +35,7 @@ export default function Conversation() {
         // className="grid grid-cols-1 md:grid-cols-2  gap-4 mt-8 w-[400px] mx-auto"
         className="h-[90%] overflow-y-auto overflow-x-clip "
       >
-        {messages.map((message, i) =>
+        {/* {messages.map((message, i) =>
           message.role === "user" ? (
             <MessageBubble
               key={i}
@@ -69,7 +70,15 @@ export default function Conversation() {
               </CardFooter>
             </Card>
           )
-        )}
+        )} */}
+        {messages.map((message, i) => (
+          <ImageBubble
+            key={i}
+            message={message.content}
+            avatar="/avatar.png"
+            role={message.role}
+          />
+        ))}
       </div>
     </>
   );

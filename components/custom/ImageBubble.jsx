@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import LoadingSkeleton from "@/components/custom/LoadingSkeleton";
 import Image from "next/image";
@@ -33,7 +32,7 @@ export default function ImageBubble({ message, avatar, role }) {
             <LoadingSkeleton />
           ) : (
             <div className="grid grid-cols-2 grid-rows-2 gap-2">
-              {message.map((url, i) => (
+              {message.map(({ url }, i) => (
                 <Image
                   key={url}
                   placeholder="blur"

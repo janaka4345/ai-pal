@@ -56,9 +56,8 @@ export default function ImagePrompt({ messages, setMessages }) {
       setMessages((currentMessages) => {
         const updateArray = [...currentMessages];
         updateArray.pop();
-        urls.forEach((url) => {
-          updateArray.push({ role: "assistant", content: url.url });
-        });
+        updateArray.push({ role: "assistant", content: urls });
+
         console.log(updateArray);
 
         return updateArray;
