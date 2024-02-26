@@ -22,6 +22,8 @@ export default function LandingPage() {
       <Link href="/testall/test4">test4</Link>
       <br />
       <Link href="/testall/test5">test5</Link>
+      <br />
+      <Link href="/testall/imagetest">imagetest</Link>
     </>
   );
 }

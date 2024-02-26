@@ -13,6 +13,11 @@ const nextConfig = {
                 hostname: 'oaidalleapiprodscus.blob.core.windows.net',
                 port: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'fastly.picsum.photos',
+                port: '',
+            },
         ],
     },
 }

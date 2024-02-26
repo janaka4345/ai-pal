@@ -8,8 +8,8 @@ export default function NavBar() {
       {/* TODO session change fix */}
       {true ? (
         <Avatar>
-          <AvatarImage src="/avatar.png" />
-          <AvatarFallback>AV</AvatarFallback>
+          <AvatarImage src="/avatar.png" alt="avatar" />
+          <AvatarFallback alt="avatar">AV</AvatarFallback>
         </Avatar>
       ) : (
         <Button>log In</Button>
