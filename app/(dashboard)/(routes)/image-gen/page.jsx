@@ -32,7 +32,7 @@ export default function Conversation() {
 
       <div
         // className="grid grid-cols-1 md:grid-cols-2  gap-4 mt-8 w-[400px] mx-auto"
-        className="h-[90%] overflow-y-auto overflow-x-clip"
+        className="h-[90%] overflow-y-auto overflow-x-clip "
       >
         {messages.map((message, i) =>
           message.role === "user" ? (
@@ -43,17 +43,21 @@ export default function Conversation() {
               avatar="avatar.png"
             />
           ) : (
-            <Card key={i} className="rounded-lg overflow-hidden ">
+            <Card
+              key={i}
+              className="rounded-lg overflow-hidden w-[150px] h-fit "
+            >
               <CardContent className="p-0 pb-6">
-                <div className="relative aspect-square ">
+                <div className="relative  ">
                   {message.content === "loading" ? (
-                    <h1>loading...</h1>
+                    <h1 className="w-[120px] h-[120px]">loading...</h1>
                   ) : (
                     <Image
                       alt="image"
-                      fill
+                      width={120}
+                      height={120}
                       src={message.content}
-                      className="cursor-pointer"
+                      className="cursor-pointer mx-auto"
                       onClick={() => console.log("click")}
                     />
                   )}
