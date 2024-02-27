@@ -15,6 +15,8 @@ export default function LandingPage() {
       <br />
       <Link href="/testall/test">test</Link>
       <br />
+      <Link href="/authtestroute">auth test route</Link>
+      <br />
       <Link href="/testall/test2">test2</Link>
       <br />
       <Link href="/testall/test3">test3</Link>

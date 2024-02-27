@@ -1,5 +1,4 @@
 import SideBar from "@/components/custom/SideBar";
-import { Suspense } from "react";
 
 export default function DashboardLayout({ children }) {
   return (
