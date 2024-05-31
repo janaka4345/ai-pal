@@ -9,14 +9,16 @@ import { cn } from "@/lib/utils";
 //   TooltipProvider,
 //   TooltipTrigger,
 // } from "@/components/ui/tooltip";
-import LoadingSkeleton from "@/components/custom/LoadingSkeleton";
+import LoadingSkeleton from "@/components/Skeletons/LoadingSkeleton";
 
 export default function MessageBubble({ message, avatar, role }) {
   return (
+    //role === "assistant"||role ==="model"  assistance required for open ai responses and model required for gemini ai api
+    // TODO change api response to return an uniform responses across different apis
     <div
       className={cn("flex  items-start  gap-2.5 m-10 min-w-[200px]   w-fit", {
         "ml-auto flex-row-reverse ": role === "user",
-        "ml-10 flex-row ": role === "assistant",
+        "ml-10 flex-row ": (role === "assistant"||role ==="model"),
       })}
     >
       <img className="w-8 h-8 rounded-full" src={avatar} alt="avatar image" />
@@ -25,7 +27,7 @@ export default function MessageBubble({ message, avatar, role }) {
           "flex flex-col relative w-full max-w-[320px] leading-1.5 p-4 border-gray-200   ",
           {
             "bg-green-100 rounded-s-xl rounded-ee-xl ": role === "user",
-            "bg-red-100 rounded-e-xl rounded-es-xl": role === "assistant",
+            "bg-red-100 rounded-e-xl rounded-es-xl": (role === "assistant"||role ==="model"),
           }
         )}
       >
@@ -41,7 +43,7 @@ export default function MessageBubble({ message, avatar, role }) {
           <p className="text-sm font-normal py-2.5 text-gray-900 ">{message}</p>
         )}
 
-        {role === "assistant" && message != "loading" && (
+        {(role === "assistant"||role ==="model") && message != "loading" && (
           <Button
             onClick={() => navigator.clipboard.writeText(message)}
             variant="ghostCopy"

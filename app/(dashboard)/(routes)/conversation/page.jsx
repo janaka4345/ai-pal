@@ -35,7 +35,7 @@ export default function Conversation() {
               key={i}
               message={message.content}
               avatar={
-                message.role === "user" ? "/avatar.png" : "/ai avatar.png"
+                message.role === "user" ? "/avatar.png" : "/ai-avatar.png"
               }
               role={message.role}
             />

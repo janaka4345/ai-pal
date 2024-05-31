@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
-import LoadingSkeleton from "@/components/custom/LoadingSkeleton";
+import LoadingSkeleton from "@/components/Skeletons/LoadingSkeleton";
 import Image from "next/image";
 
 export default function ImageBubble({ message, avatar, role }) {
