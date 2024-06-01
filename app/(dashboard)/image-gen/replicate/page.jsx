@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Image as LucidImage } from "lucide-react";
 import ImageCard from "./_components/ImageCard";
 
-export default function Conversation() {
+export default function ReplicateImageConversation() {
   const [images, setImages] = useState([]);
 
   return (
