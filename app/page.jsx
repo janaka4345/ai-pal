@@ -13,7 +13,7 @@ export default function LandingPage() {
         dashboard
       </Link>
       <br />
-      <Link href="/authtestroute">auth test route</Link>
+      <Link href="/testAuthRoute">auth test route</Link>
       <br />
       
     </>

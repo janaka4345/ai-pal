@@ -29,24 +29,18 @@ const routes = [
     href: "/conversation",
     color: "text-violet-500",
   },
-   {
-    label: "geminiConversation",
-    icon: MessageSquare,
-    href: "/geminiConversation",
-    color: "text-violet-500",
-  },
   {
     label: "Image Generation",
     icon: ImageIcon,
     color: "text-pink-700",
     href: "/image-gen",
   },
-  {
-    label: "Replicate Image Generation",
-    icon: ImageIcon,
-    color: "text-pink-700",
-    href: "/imageReplicate",
-  },
+  // {
+  //   label: "Replicate Image Generation",
+  //   icon: ImageIcon,
+  //   color: "text-pink-700",
+  //   href: "/imageReplicate",
+  // },
   {
     label: "Video Generation",
     icon: VideoIcon,
