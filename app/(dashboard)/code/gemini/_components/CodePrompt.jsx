@@ -29,16 +29,19 @@ export default function CodePrompt({ messages, setMessages }) {
 
   async function onSubmit(values) {
     try {
+      console.log('ran');
       const userMessage = {
         role: "user",
-        content: values.prompt,
+        parts: [{text:values.prompt}],
       };
       const newMessages = [...messages, userMessage];
       // console.log({ newMessages });
       //TODO Use server actions here
-      const response = await axios.post("/api/code", {
+      const response = await axios.post("/api/codeGemini", {
         messages: newMessages,
       });
+
+      console.log(response);
 
       setMessages((currentMessages) => [
         ...currentMessages,
