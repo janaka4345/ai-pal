@@ -1,21 +1,19 @@
 "use client";
-import { codePromptSchema } from "@/lib/shema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import Spinner from "@/components/custom/Spinner";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form";
-import axios from "axios";
+import { Input } from "@/components/ui/input";
+import { codePromptSchema } from "@/lib/shema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { ChatBubbleIcon } from "@radix-ui/react-icons";
-import Spinner from "@/components/custom/Spinner";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 
 export default function CodePrompt({ messages, setMessages }) {
   const form = useForm({
@@ -41,7 +39,6 @@ export default function CodePrompt({ messages, setMessages }) {
         messages: newMessages,
       });
 
-      console.log(response);
 
       setMessages((currentMessages) => [
         ...currentMessages,

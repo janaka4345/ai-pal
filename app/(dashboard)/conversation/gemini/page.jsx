@@ -13,17 +13,7 @@ console.log(messages);
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-    // const t=async ()=>{
-      // console.log('rannnnn');
-      // try {
-    // const response = await axios.get("/api/conversationGemini");
-    // console.log(response.data);
-
-  // } catch (error) {
-    // console.log(error);
-  // }
-    // }
-    // t()
+    
 
   }, [messages]);
 

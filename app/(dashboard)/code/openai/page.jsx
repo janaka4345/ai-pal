@@ -38,7 +38,7 @@ export default function CodeGeneration() {
           ref={containerRef}
           className="h-[90%] overflow-y-auto overflow-x-clip"
         ></div>
-        {/* {messages.map((message, i) =>
+         {messages.map((message, i) =>
           message.role === "user" ? (
             <MessageBubble
               key={i}
@@ -67,7 +67,7 @@ export default function CodeGeneration() {
               {message.content}
             </ReactMarkdown>
           )
-        )} */}
+        )} 
         <CodePrompt messages={messages} setMessages={setMessages} />
       </div>
     </>
