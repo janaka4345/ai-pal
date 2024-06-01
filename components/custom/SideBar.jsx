@@ -23,12 +23,12 @@ const routes = [
     href: "/dashboard",
     color: "text-sky-500",
   },
-  // {
-  //   label: "Conversation",
-  //   icon: MessageSquare,
-  //   href: "/conversation",
-  //   color: "text-violet-500",
-  // },
+  {
+    label: "Conversation",
+    icon: MessageSquare,
+    href: "/conversation",
+    color: "text-violet-500",
+  },
    {
     label: "geminiConversation",
     icon: MessageSquare,

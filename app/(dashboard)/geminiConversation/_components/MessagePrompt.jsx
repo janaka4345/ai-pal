@@ -32,35 +32,39 @@ export default function MessagePrompt({ messages, setMessages }) {
       // parts: values.message,
       parts:[{ text: values.message }]
     };
+
     const newMessages = [...messages, userMessage];
     setMessages((currentMessages) => [
       ...currentMessages,
       userMessage,
       { role: "model", parts:[{ text: 'loading' }] },
     ]);
+
     try {
       //TODO Use server actions here
       const response = await axios.post("/api/gemniConversation", {
         messages: newMessages,
       });
+
       // console.log({'message1':messages});
 // console.log(response);
+
       setMessages((currentMessages) => {
         const updateArray = [...currentMessages];
-        // updateArray[updateArray.length - 1] = response.data;
+        updateArray[updateArray.length - 1] = response.data;
         return updateArray;
       });
 
-      // if (response.status != 200) {
-      //   throw new Error("Network response was not ok");
-      // }
+      if (response.status != 200) {
+        throw new Error("Network response was not ok");
+      }
       // Handle response data
       // console.log({'message2':messages});
 
       form.reset();
     } catch (error) {
       // TODO activate pro
-      // console.log(error);
+      console.log(error);
     }
   }
 

@@ -13,21 +13,9 @@ export default function LandingPage() {
         dashboard
       </Link>
       <br />
-      <Link href="/testall/test">test</Link>
-      <br />
       <Link href="/authtestroute">auth test route</Link>
       <br />
-      <Link href="/testall/test2">test2</Link>
-      <br />
-      <Link href="/testall/test3">test3</Link>
-      <br />
-      <Link href="/testall/test4">test4</Link>
-      <br />
-      <Link href="/testall/test5">test5</Link>
-      <br />
-      <Link href="/testall/imagetest">imagetest</Link>
-      <br />
-      <Link href="/testall/imagetestcard">imagetestcard</Link>
+      
     </>
   );
 }

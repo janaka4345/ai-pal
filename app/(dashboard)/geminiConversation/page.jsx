@@ -8,7 +8,7 @@ import MessagePrompt from "./_components/MessagePrompt";
 export default function Conversation() {
   const [messages, setMessages] = useState([]);
   const containerRef = useRef(null);
-
+console.log(messages);
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -44,10 +44,11 @@ export default function Conversation() {
           ref={containerRef}
           className="h-[90%] overflow-y-auto overflow-x-clip"
         >
-          {messages.map((message, i) => (
+          {messages && messages.map((message, i) => (
             <MessageBubble
               key={i}
               message={message.parts[0].text}
+              // message='hi'
               avatar={
                 message.role === "user" ? "/avatar.png" : "/ai-avatar.png"
               }

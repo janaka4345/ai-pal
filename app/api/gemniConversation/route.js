@@ -19,13 +19,13 @@ export async function POST(req) {
         });
         console.log(messages);
         console.log({ 'data': messages[messages.length - 1].parts[0].text });
-        const msg = "what do u say?";
+        const msg = "";
 
         const result = await chat.sendMessage(msg);
         const response = result.response;
         const text = response.text();
-        console.log(text);
-        return NextResponse.json(response.text(), { status: 200 });
+        console.log(response);
+        return NextResponse.json({ role: 'model', parts: [{ text: response.text() }] }, { status: 200 });
         // return NextResponse.json({ dude: 'dude' }, { status: 200 });
 
     } catch (error) {
