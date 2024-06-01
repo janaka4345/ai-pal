@@ -49,9 +49,12 @@ export async function POST(req) {
         //     await incrementApiLimit();
         // }
 
+        console.log('ran try');
         return NextResponse.json(response.choices[0].message, { status: 200 });
     } catch (error) {
-        console.log('[CONVERSATION_ERROR]', error);
-        return new NextResponse("Internal Error", { status: 500 });
+        // console.log('ran catch');
+
+        // console.log('[CONVERSATION_ERROR]', error);
+        return new NextResponse(error, { status: 500 });
     }
 };
