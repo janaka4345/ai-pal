@@ -1,34 +1,20 @@
 "use client";
-import { Heading } from "@/components/custom/Heading";
-import MessageBubble from "@/components/custom/MessageBubble";
 import { MessageSquare } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Heading } from "@/components/custom/Heading";
 import MessagePrompt from "./_components/MessagePrompt";
+import { useEffect, useRef, useState } from "react";
+import MessageBubble from "@/components/custom/MessageBubble";
 
-export default function Conversation() {
+export default function OpenaiConversation() {
   const [messages, setMessages] = useState([]);
   const containerRef = useRef(null);
-console.log(messages);
+
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-    // const t=async ()=>{
-      // console.log('rannnnn');
-      // try {
-    // const response = await axios.get("/api/gemniConversation");
-    // console.log(response.data);
-
-  // } catch (error) {
-    // console.log(error);
-  // }
-    // }
-    // t()
-
   }, [messages]);
 
-  
-  
   return (
     <>
       <Heading
@@ -44,11 +30,10 @@ console.log(messages);
           ref={containerRef}
           className="h-[90%] overflow-y-auto overflow-x-clip"
         >
-          {messages && messages.map((message, i) => (
+          {messages.map((message, i) => (
             <MessageBubble
               key={i}
-              message={message.parts[0].text}
-              // message='hi'
+              message={message.content}
               avatar={
                 message.role === "user" ? "/avatar.png" : "/ai-avatar.png"
               }

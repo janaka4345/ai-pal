@@ -42,7 +42,7 @@ export default function MessagePrompt({ messages, setMessages }) {
 
     try {
       //TODO Use server actions here
-      const response = await axios.post("/api/gemniConversation", {
+      const response = await axios.post("/api/conversationGemini", {
         messages: newMessages,
       });
 

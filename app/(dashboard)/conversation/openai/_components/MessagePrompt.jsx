@@ -37,6 +37,8 @@ export default function MessagePrompt({ messages, setMessages }) {
       userMessage,
       { role: "assistant", content: "loading" },
     ]);
+
+
     try {
       //TODO Use server actions here
       const response = await axios.post("/api/conversation", {
@@ -52,11 +54,12 @@ export default function MessagePrompt({ messages, setMessages }) {
       if (response.status != 200) {
         throw new Error("Network response was not ok");
       }
-      // Handle response data
       form.reset();
+      // Handle response data
     } catch (error) {
       // TODO activate pro
-      console.log(error);
+      // console.log(error);
+      console.log(error.response);
     }
   }
 
