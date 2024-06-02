@@ -1,3 +1,3 @@
 export default function Videos() {
-  return <div>Videos</div>;
+    return <div>Comming soon</div>
 }

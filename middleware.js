@@ -1,5 +1,5 @@
-export { default } from "next-auth/middleware"
+export { default } from 'next-auth/middleware'
 
 //add protected routes here
-export const config = { matcher: ["/authtestroute"] }
+export const config = { matcher: ['/authtestroute'] }
 // "/dashboard",

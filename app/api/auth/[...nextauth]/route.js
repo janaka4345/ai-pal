@@ -1,14 +1,14 @@
-import NextAuth from "next-auth"
+import NextAuth from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 // import GoogleProvider from 'next-auth/providers/google'
-import CredentialsProvider from "next-auth/providers/credentials"
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 export const authOptions = {
     // Configure one or more authentication providers
     providers: [
         GitHubProvider({
-            clientId: process.env.GITHUB_CLIENT_ID ?? "",
-            clientSecret: process.env.GITHUB_CLIENT_SECRET ?? "",
+            clientId: process.env.GITHUB_CLIENT_ID ?? '',
+            clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
         }),
         // ...add more providers here
         CredentialsProvider({
@@ -19,21 +19,28 @@ export const authOptions = {
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                username: { label: "Username", type: "text", placeholder: "jsmith" },
-                password: { label: "Password", type: "password" }
+                username: {
+                    label: 'Username',
+                    type: 'text',
+                    placeholder: 'jsmith',
+                },
+                password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
-                // This is where you need to retrieve user data 
+                // This is where you need to retrieve user data
                 // to verify with credentials
                 // Docs: https://next-auth.js.org/configuration/providers/credentials
-                const user = { id: "42", name: "Dave", password: "nextauth" }
+                const user = { id: '42', name: 'Dave', password: 'nextauth' }
 
-                if (credentials?.username === user.name && credentials?.password === user.password) {
+                if (
+                    credentials?.username === user.name &&
+                    credentials?.password === user.password
+                ) {
                     return user
                 } else {
                     return null
                 }
-            }
+            },
             // async authorize(credentials, req) {
             // You need to provide your own logic here that takes the credentials
             // submitted and returns either a object representing a user or value
@@ -55,7 +62,7 @@ export const authOptions = {
             // Return null if user data could not be retrieved
             // return null
             // }
-        })
+        }),
     ],
 
     pages: {
@@ -64,7 +71,7 @@ export const authOptions = {
         // error: '/auth/error', // Error code passed in query string as ?error=
         // verifyRequest: '/auth/verify-request', // (used for check email message)
         // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
-    }
+    },
 }
 export const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }

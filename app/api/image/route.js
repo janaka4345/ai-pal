@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
 // import { Configuration, OpenAIApi } from "openai";
-import OpenAI from "openai";
+import OpenAI from 'openai'
 
 // const configuration = new Configuration({
 //     apiKey: process.env.OPENAI_API_KEY,
@@ -8,15 +8,15 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY, // This is the default and can be omitted
-});
+})
 
 // const openai = new OpenAIApi(configuration);
 
 export async function POST(req) {
     try {
         // const { userId } = auth();
-        const body = await req.json();
-        const { imagePrompt } = body;
+        const body = await req.json()
+        const { imagePrompt } = body
         // if (!userId) {
         //     return new NextResponse("Unauthorized", { status: 401 });
         // }
@@ -38,19 +38,19 @@ export async function POST(req) {
 
         const response = await openai.images.generate({
             // const response = await openai.createImage({
-            model: "dall-e-2",
+            model: 'dall-e-2',
             prompt: imagePrompt,
             n: 4,
-            size: '1024x1024'
-        });
+            size: '1024x1024',
+        })
 
         // if (!isPro) {
         //     await incrementApiLimit();
         // }
 
-        return NextResponse.json(response, { status: 200 });
+        return NextResponse.json(response, { status: 200 })
     } catch (error) {
-        console.log('[IMAGE_ERROR]', error);
-        return new NextResponse("Internal Error", { status: 500 });
+        console.log('[IMAGE_ERROR]', error)
+        return new NextResponse('Internal Error', { status: 500 })
     }
-};
+}

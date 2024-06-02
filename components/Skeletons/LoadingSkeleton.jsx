@@ -1,10 +1,10 @@
 export default function LoadingSkeleton() {
-  return (
-    <div className="max-w-sm mt-2 animate-pulse">
-      <div className="h-2 bg-gray-500 rounded-full  w-48 mb-4"></div>
-      <div className="h-2 bg-gray-500 rounded-full  w-40 mb-4"></div>
-      <div className="h-2 bg-gray-500 rounded-full  w-40 mb-4"></div>
-      <span className="sr-only">Loading...</span>
-    </div>
-  );
+    return (
+        <div className="mt-2 max-w-sm animate-pulse">
+            <div className="mb-4 h-2 w-48 rounded-full bg-gray-500"></div>
+            <div className="mb-4 h-2 w-40 rounded-full bg-gray-500"></div>
+            <div className="mb-4 h-2 w-40 rounded-full bg-gray-500"></div>
+            <span className="sr-only">Loading...</span>
+        </div>
+    )
 }

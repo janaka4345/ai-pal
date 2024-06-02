@@ -1,3 +1,3 @@
 export default function ReplyBubble() {
-  return <div>ReplyBubble</div>;
+    return <div>ReplyBubble</div>
 }

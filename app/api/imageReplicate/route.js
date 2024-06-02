@@ -1,17 +1,15 @@
-import { NextResponse } from "next/server";
-import Replicate from "replicate";
+import { NextResponse } from 'next/server'
+import Replicate from 'replicate'
 
-
-const replicate = new Replicate(
-    //     {
-    //     auth:apikey
-    // }
-);
+const replicate = new Replicate()
+//     {
+//     auth:apikey
+// }
 export async function POST(req) {
     try {
         // const { userId } = auth();
-        const body = await req.json();
-        const { imagePrompt } = body;
+        const body = await req.json()
+        const { imagePrompt } = body
         // if (!userId) {
         //     return new NextResponse("Unauthorized", { status: 401 });
         // }
@@ -32,23 +30,23 @@ export async function POST(req) {
         // }
 
         const response = await replicate.run(
-            "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+            'stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b',
             {
                 input: {
                     prompt: imagePrompt,
                     num_outputs: 4,
                     width: 1024,
                     height: 1024,
-                }
+                },
             }
-        );
+        )
         // if (!isPro) {
         //     await incrementApiLimit();
         // }
 
-        return NextResponse.json(response, { status: 200 });
+        return NextResponse.json(response, { status: 200 })
     } catch (error) {
-        console.log('[IMAGE_ERROR]', error);
-        return new NextResponse("Internal Error", { status: 500 });
+        console.log('[IMAGE_ERROR]', error)
+        return new NextResponse('Internal Error', { status: 500 })
     }
-};
+}
