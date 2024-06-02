@@ -1,14 +1,8 @@
 'use client'
 
-import { Heading } from '@/components/custom/Heading'
-import ImagePrompt from './_components/ImagePrompt'
 import { useState } from 'react'
+import ImagePrompt from './_components/ImagePrompt'
 
-import { Image as LucidImage } from 'lucide-react'
-import Image from 'next/image'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import MessageBubble from '@/components/custom/MessageBubble'
 import ImageBubble from '@/components/custom/ImageBubble'
 
 export default function OpenaiImageConversation() {
@@ -16,13 +10,6 @@ export default function OpenaiImageConversation() {
 
     return (
         <>
-            <Heading
-                title="Image Generation"
-                description="something descriptive"
-                icon={LucidImage}
-                iconColor="text-pink-500"
-                bgColor="bg-pink-700/10"
-            />
             {/* dalle 3 free tier only allowes 1 image and resolution 1024 only
       dalle 2free tier only allowes 5 image per min */}
             <ImagePrompt messages={messages} setMessages={setMessages} />

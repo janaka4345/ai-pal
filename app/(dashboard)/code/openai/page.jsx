@@ -1,10 +1,8 @@
 'use client'
-import { Code } from 'lucide-react'
-import { Heading } from '@/components/custom/Heading'
-import { useEffect, useRef, useState } from 'react'
-import CodePrompt from './_components/CodePrompt'
-import ReactMarkdown from 'react-markdown'
 import MessageBubble from '@/components/custom/MessageBubble'
+import { useEffect, useRef, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import CodePrompt from './_components/CodePrompt'
 export default function CodeGeneration() {
     const [messages, setMessages] = useState([])
 
@@ -18,14 +16,6 @@ export default function CodeGeneration() {
 
     return (
         <>
-            <Heading
-                title="Code Generation"
-                description="something descriptive"
-                icon={Code}
-                iconColor="text-green-500"
-                bgColor="bg-secondary"
-            />
-
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
       */}

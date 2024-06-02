@@ -1,8 +1,6 @@
 'use client'
 import CodeBubble from '@/components/custom/CodeBubble'
-import { Heading } from '@/components/custom/Heading'
 import MessageBubble from '@/components/custom/MessageBubble'
-import { Code } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import CodePrompt from './_components/CodePrompt'
 
@@ -32,13 +30,6 @@ export default function CodeGeneration() {
 
     return (
         <>
-            <Heading
-                title="Code Generation"
-                description="something descriptive"
-                icon={Code}
-                iconColor="text-green-500"
-                bgColor="bg-secondary"
-            />
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
       */}

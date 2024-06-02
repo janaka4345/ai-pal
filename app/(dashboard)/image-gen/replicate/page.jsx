@@ -1,24 +1,14 @@
 'use client'
 
-import { Heading } from '@/components/custom/Heading'
-import ImagePrompt from './_components/ImagePrompt'
 import { useState } from 'react'
-import { Image as LucidImage } from 'lucide-react'
 import ImageCard from './_components/ImageCard'
+import ImagePrompt from './_components/ImagePrompt'
 
 export default function ReplicateImageConversation() {
     const [images, setImages] = useState([])
 
     return (
         <>
-            <Heading
-                title="Image Generation"
-                description="something descriptive"
-                icon={LucidImage}
-                iconColor="text-pink-500"
-                bgColor="bg-pink-700/10"
-            />
-
             <ImagePrompt images={images} setImages={setImages} />
 
             {/* TODO add conversaation style message output 

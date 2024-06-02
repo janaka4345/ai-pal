@@ -1,7 +1,5 @@
 'use client'
-import { Heading } from '@/components/custom/Heading'
 import MessageBubble from '@/components/custom/MessageBubble'
-import { MessageSquare } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import MessagePrompt from './_components/MessagePrompt'
 
@@ -17,13 +15,6 @@ export default function GeminiConversation() {
 
     return (
         <>
-            <Heading
-                title="Conversation"
-                description="something descriptive"
-                icon={MessageSquare}
-                iconColor="text-violet-500"
-                bgColor="bg-secondary"
-            />
             {/* must spesify a height for use effect scrolling to work */}
             <div className="flex h-[85%] flex-col">
                 <div

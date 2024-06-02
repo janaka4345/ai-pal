@@ -1,5 +1,4 @@
 'use client'
-import { MessageSquare } from 'lucide-react'
 import { Heading } from '@/components/custom/Heading'
 import MessagePrompt from './_components/MessagePrompt'
 import { useEffect, useRef, useState } from 'react'
@@ -17,13 +16,6 @@ export default function OpenaiConversation() {
 
     return (
         <>
-            <Heading
-                title="Conversation"
-                description="something descriptive"
-                icon={MessageSquare}
-                iconColor="text-violet-500"
-                bgColor="bg-secondary"
-            />
             {/* must spesify a height for use effect scrolling to work */}
             <div className="flex h-[85%] flex-col">
                 <div
