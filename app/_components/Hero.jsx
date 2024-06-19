@@ -1,3 +1,5 @@
+import Companies from './Companies'
+
 export default function Hero() {
     return (
         <section id="hero" className="h-[calc(100dvh-10dvh)]">
@@ -50,6 +52,7 @@ export default function Hero() {
                     </a>
                 </div>
             </div>
+            <Companies />
         </section>
     )
 }
