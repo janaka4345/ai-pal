@@ -1,9 +1,10 @@
 import NavBar from '@/components/custom/NavBar'
-import { getServerSession } from 'next-auth'
+// import { getServerSession } from 'next-auth'
 import { Inter } from 'next/font/google'
-import SessionProvider from './api/auth/_components/SessionProvider'
+// import SessionProvider from './api/auth/_components/SessionProvider'
 import './globals.css'
 
+//TODO remove client side session provider
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -12,14 +13,14 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-    const session = await getServerSession()
+    // const session = await getServerSession()
     return (
         <html lang="en">
             <body className={inter.className}>
-                <SessionProvider session={session}>
-                    <NavBar />
-                    <main className="pt-[10dvh]">{children}</main>
-                </SessionProvider>
+                {/* <SessionProvider session={session}> */}
+                <NavBar />
+                <main className="pt-[10dvh]">{children}</main>
+                {/* </SessionProvider> */}
             </body>
         </html>
     )
