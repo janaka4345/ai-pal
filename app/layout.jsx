@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
     title: 'AI Pal',
-    description: 'Your Custom AI Pal',
+    description: 'All-in-one AI toolkit',
 }
 
 export default async function RootLayout({ children }) {
@@ -18,7 +18,7 @@ export default async function RootLayout({ children }) {
             <body className={inter.className}>
                 <SessionProvider session={session}>
                     <NavBar />
-                    {children}
+                    <main className="pt-[10dvh]">{children}</main>
                 </SessionProvider>
             </body>
         </html>
