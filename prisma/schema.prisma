@@ -11,18 +11,21 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?         @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  tierId         String     @db.ObjectId
+  Payments       Payments[]
+  tier           Tier       @relation(fields: [tierId], references: [id])
+  tokenRemaining Int        @default(200)
+  tokensExpireAt DateTime
 }
 
 model Account {
@@ -67,26 +70,22 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Optional for WebAuthn support
-model Authenticator {
-  credentialID         String  @id @map("_id")
-  userId               String  @db.ObjectId
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, credentialID])
+model Tier {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  price       Int
+  tokens      Int
+  User        User[]
 }
 
-model UserApiLimit {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @unique
-  count     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Payments {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  amount      Int
+  mesthod     String
+  createdAt   DateTime @default(now())
+  description String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
 }
