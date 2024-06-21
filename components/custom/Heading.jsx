@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import ServiceProvider from './ServiceProvider'
 
 export const Heading = ({
     title,
@@ -14,7 +15,10 @@ export const Heading = ({
                     <Icon className={cn('h-10 w-10', iconColor)} />
                 </div>
                 <div>
-                    <h2 className="text-3xl font-bold">{title}</h2>
+                    <h2 className="text-3xl font-bold">
+                        {title} with <ServiceProvider />
+                    </h2>
+
                     <p className="text-sm text-muted-foreground">
                         {description}
                     </p>
