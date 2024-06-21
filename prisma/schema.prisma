@@ -21,11 +21,11 @@ model User {
 
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
-  tierId         String     @db.ObjectId
+  tierId         String?    @db.ObjectId
   Payments       Payments[]
-  tier           Tier       @relation(fields: [tierId], references: [id])
+  tier           Tier?      @relation(fields: [tierId], references: [id])
   tokenRemaining Int        @default(200)
-  tokensExpireAt DateTime
+  tokensExpireAt DateTime?
 }
 
 model Account {
