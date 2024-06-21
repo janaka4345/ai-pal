@@ -15,7 +15,7 @@ export default function ReplicateImageConversation() {
       consider st5ramnig output like chatgpt
       */}
 
-            <div className="mx-auto mt-8 grid w-[400px] grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="mx-auto mt-8 grid h-[60%] grid-cols-1 gap-4 overflow-auto md:grid-cols-2">
                 {images.map((image, i) => (
                     <ImageCard key={i} image={image} />
                 ))}

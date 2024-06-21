@@ -1,9 +1,12 @@
+import { cn } from '@/lib/utils'
 import User from './User'
+import { buttonVariants } from '../ui/button'
+import Link from 'next/link'
 
 export default function NavBar() {
     return (
         <nav className="fixed start-0 top-0 z-20 h-[10dvh] w-full border-b border-gray-200 backdrop-blur-md">
-            <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between p-4">
+            <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-center p-4">
                 <a href="/" className="flex items-center space-x-3">
                     <svg
                         fill="none"
@@ -182,12 +185,12 @@ export default function NavBar() {
                     </button>
                 </div> */}
                 {/* TODO session change fix */}
-                <button
-                    type="button"
-                    className="ml-auto mr-4 rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                <Link
+                    href="/dashboard"
+                    className={cn(buttonVariants(), 'mr-4')}
                 >
-                    Get started
-                </button>
+                    Dashboard
+                </Link>
                 <User />
             </div>
         </nav>

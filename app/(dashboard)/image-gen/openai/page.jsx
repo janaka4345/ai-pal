@@ -20,7 +20,7 @@ export default function OpenaiImageConversation() {
 
             <div
                 // className="grid grid-cols-1 md:grid-cols-2  gap-4 mt-8 w-[400px] mx-auto"
-                className="h-[90%] overflow-y-auto overflow-x-clip"
+                className="h-[80%] overflow-y-auto overflow-x-clip"
             >
                 {/* {messages.map((message, i) =>
           message.role === "user" ? (

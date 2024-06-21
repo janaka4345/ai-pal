@@ -14,7 +14,7 @@ export default function layout({ children }) {
                 iconColor="text-pink-500"
                 bgColor="bg-pink-700/10"
             />
-            <nav className="fixed flex flex-row gap-2">
+            <nav className="flex flex-row gap-2">
                 <Link
                     className={cn(buttonVariants({ variant: 'link' }))}
                     href="/image-gen/openai"

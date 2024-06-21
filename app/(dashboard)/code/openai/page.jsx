@@ -19,7 +19,7 @@ export default function CodeGeneration() {
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
       */}
-            <div className="flex h-[85%] flex-col">
+            <div className="flex h-[80%] flex-col">
                 <div
                     ref={containerRef}
                     className="h-[90%] overflow-y-auto overflow-x-clip"

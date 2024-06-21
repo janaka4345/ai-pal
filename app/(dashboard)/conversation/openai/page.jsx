@@ -17,7 +17,7 @@ export default function OpenaiConversation() {
     return (
         <>
             {/* must spesify a height for use effect scrolling to work */}
-            <div className="flex h-[85%] flex-col">
+            <div className="flex h-[80%] flex-col">
                 <div
                     ref={containerRef}
                     className="h-[90%] overflow-y-auto overflow-x-clip"
