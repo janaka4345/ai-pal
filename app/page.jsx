@@ -13,11 +13,7 @@ export default function LandingPage() {
             <Pricing />
             <Testimonials />
             <Footer />
-            <div>Landingp page</div>
-            <Link className={buttonVariants()} href="/dashboard">
-                dashboard
-            </Link>
-            <br />
+
             <Link href="/testAuthRoute">auth test route</Link>
             <br />
         </section>
