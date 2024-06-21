@@ -11,12 +11,12 @@ export default function GeminiConversation() {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
-    }, [messages])
+    }, [messages[messages.length - 1].parts[0].text])
 
     return (
         <>
             {/* must spesify a height for use effect scrolling to work */}
-            <div className="flex h-[85%] flex-col">
+            <div className="flex h-[80%] flex-col">
                 <div
                     ref={containerRef}
                     className="h-[90%] overflow-y-auto overflow-x-clip"

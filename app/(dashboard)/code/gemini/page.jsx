@@ -24,35 +24,34 @@ export default function CodeGeneration() {
 
     useEffect(() => {
         if (containerRef.current) {
+            console.log(containerRef.current.scrollHeight)
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
-    }, [messages])
+    }, [messages[messages.length - 1].parts[0].text])
 
     return (
         <>
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
       */}
-            <div className="flex h-[85%] flex-col">
-                <div
-                    ref={containerRef}
-                    className="h-[90%] overflow-y-auto overflow-x-clip"
-                ></div>
-                {messages.map((message, i) =>
-                    message?.role === 'user' ? (
-                        <MessageBubble
-                            key={i}
-                            message={message?.parts[0]?.text}
-                            role={message?.role}
-                            avatar="/avatar.png"
-                        />
-                    ) : (
-                        <CodeBubble
-                            key={i}
-                            messageCode={message.parts[0].text}
-                        />
-                    )
-                )}
+            <div className="flex h-[80%] flex-col">
+                <div ref={containerRef} className="h-[90%] overflow-auto">
+                    {messages.map((message, i) =>
+                        message?.role === 'user' ? (
+                            <MessageBubble
+                                key={i}
+                                message={message?.parts[0]?.text}
+                                role={message?.role}
+                                avatar="/avatar.png"
+                            />
+                        ) : (
+                            <CodeBubble
+                                key={i}
+                                messageCode={message.parts[0].text}
+                            />
+                        )
+                    )}
+                </div>
                 <CodePrompt messages={messages} setMessages={setMessages} />
             </div>
         </>
