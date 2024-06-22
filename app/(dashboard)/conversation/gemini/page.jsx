@@ -11,7 +11,9 @@ export default function GeminiConversation() {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
-    }, [messages[messages.length - 1].parts[0].text])
+        //TODO dependancy array mus tdepend on primitives
+        // }, [messages[messages.length - 1].parts[0].text])
+    }, [messages])
 
     return (
         <>

@@ -135,7 +135,7 @@ export default function NavBar() {
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="#about"
                                 className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                             >
                                 About
@@ -143,15 +143,15 @@ export default function NavBar() {
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="#pricing"
                                 className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                             >
-                                Services
+                                Pricing
                             </a>
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="#contact"
                                 className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                             >
                                 Contact
