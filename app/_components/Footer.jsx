@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="bg-white p-4 md:p-8 lg:p-10">
+        <footer className="bg-white p-4 md:p-8 lg:p-10" id="contact">
             <div className="mx-auto max-w-screen-xl text-center">
                 <a
                     href="#"
