@@ -21,7 +21,7 @@ export async function POST(req) {
 
         const result = await chat.sendMessage(msg)
         const response = result.response
-        console.log(response)
+        // console.log(response)
         return NextResponse.json(
             { role: 'model', parts: [{ text: response.text() }] },
             { status: 200 }

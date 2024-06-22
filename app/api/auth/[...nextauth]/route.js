@@ -68,6 +68,22 @@ export const authOptions = {
             // }
         }),
     ],
+    callbacks: {
+        // async signIn({ user, account, profile, email, credentials }) {
+        //     return true
+        // },
+        // async redirect({ url, baseUrl }) {
+        //     return baseUrl
+        // },
+        async session({ session, user, token }) {
+            // console.log(session);
+            return session
+        },
+        async jwt({ token, user, account, profile, isNewUser }) {
+            // console.log({ token, user, account, profile, isNewUser });
+            return token
+        }
+    },
 
     pages: {
         // signIn: '/auth/signin',
@@ -76,6 +92,7 @@ export const authOptions = {
         // verifyRequest: '/auth/verify-request', // (used for check email message)
         // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
     },
+
 }
 export const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
