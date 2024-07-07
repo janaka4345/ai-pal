@@ -9,7 +9,7 @@ import About from './_components/About'
 
 export default function LandingPage() {
     return (
-        <section className="">
+        <section>
             <Hero />
             <About />
             <Pricing />

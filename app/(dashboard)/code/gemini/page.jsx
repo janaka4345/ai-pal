@@ -5,20 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import CodePrompt from './_components/CodePrompt'
 
 export default function CodeGeneration() {
-    const [messages, setMessages] = useState([
-        {
-            role: 'user',
-            parts: [{ text: 'hi' }],
-        },
-        {
-            role: 'model',
-            parts: [
-                {
-                    text: "###### Code Blocks This markdown editor allows for inline-code snippets, like this: `<p>I'm inline</p>`. It also allows for larger code blocks like this```<main>  <h1>This is a larger code block</h1></main>```",
-                },
-            ],
-        },
-    ])
+    const [messages, setMessages] = useState([])
 
     const containerRef = useRef(null)
 
@@ -27,7 +14,7 @@ export default function CodeGeneration() {
             console.log(containerRef.current.scrollHeight)
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
-    }, [messages[messages.length - 1].parts[0].text])
+    }, [messages[messages.length - 1]?.parts[0].text])
 
     return (
         <>
