@@ -16,7 +16,7 @@ export const Heading = ({
                 </div>
                 <div>
                     <h2 className="text-3xl font-bold">
-                        {title} with <ServiceProvider />
+                        {title} with <ServiceProvider iconColor={iconColor} />
                     </h2>
 
                     <p className="text-sm text-muted-foreground">
