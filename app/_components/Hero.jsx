@@ -24,22 +24,18 @@ export default function Hero() {
                 </p>
                 <div className="mt-16 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                     <a
-                        href="#"
+                        href="/dashboard"
                         className="inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
                     >
                         Get started
                         <svg
                             className="ms-2 h-3.5 w-3.5 rtl:rotate-180"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
                             fill="none"
+                            aria-hidden="true"
                             viewBox="0 0 14 10"
                         >
                             <path
                                 stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
                                 d="M1 5h12m0 0L9 1m4 4L9 9"
                             />
                         </svg>
