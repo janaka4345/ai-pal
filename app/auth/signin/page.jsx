@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { UserAuthForm } from '../_components/UserAuthForm'
+import SocialAuth from '../_components/SocialAuth'
 
 // export const metadata = {
 //   title: "Authentication",
@@ -10,8 +11,8 @@ import { UserAuthForm } from '../_components/UserAuthForm'
 
 export default function page() {
     return (
-        <div className="lg:p-6">
-            <div className="mx-auto flex w-full flex-col justify-center gap-2 sm:w-[350px]">
+        <div className="mx-auto flex flex-col p-6">
+            <div className="mx-auto flex w-[350px] flex-col justify-center gap-2">
                 <div className="flex flex-col space-y-2 text-center">
                     <h1 className="text-2xl font-semibold tracking-tight">
                         Log in with Email
@@ -22,54 +23,18 @@ export default function page() {
                 </div>
                 {/* <UserAuthForm /> */}
                 <UserAuthForm />
-                <div className="relative">
-                    <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t" />
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-background px-2 text-muted-foreground">
-                            Or continue with
-                        </span>
-                    </div>
-                </div>
-                <Button
-                    variant="outline"
-                    type="button"
-                    // disabled={isLoading}
-                >
-                    {/* {isLoading ? (
-           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-           <Icons.gitHub className="mr-2 h-4 w-4" />
-        )}{" "} */}
-                    GitHub
-                </Button>
-                <Button
-                    variant="outline"
-                    type="button"
-                    // disabled={isLoading}
-                >
-                    {/* {isLoading ? (
-           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-           <Icons.gitHub className="mr-2 h-4 w-4" />
-        )}{" "} */}
-                    GitHub
-                </Button>
-                <Button
-                    variant="outline"
-                    type="button"
-                    // disabled={isLoading}
-                >
-                    {/* {isLoading ? (
-           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-           <Icons.gitHub className="mr-2 h-4 w-4" />
-        )}{" "} */}
-                    GitHub
-                </Button>
+                <SocialAuth />
             </div>
-            <p className="mt-4 px-8 text-center text-sm text-muted-foreground">
+            <p className="h-fit text-sm font-light text-gray-500">
+                Dont have an account?{' '}
+                <Link
+                    href="/auth/register"
+                    className="text-primary-600 font-medium hover:underline"
+                >
+                    Register
+                </Link>
+            </p>
+            <p className="mx-auto mt-4 px-8 text-center text-sm text-muted-foreground">
                 By clicking continue, you agree to our{' '}
                 <Link
                     href="/terms"
