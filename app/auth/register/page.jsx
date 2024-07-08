@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import RegisterForm from '../_components/RegisterForm'
+import SocialAuth from '../_components/SocialAuth'
 
 export default function page() {
     return (
-        <section className="lg:p-8">
+        <section className="p-8">
             <div className="flex flex-col space-y-2 text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">
                     Create an account
@@ -13,6 +14,8 @@ export default function page() {
                 </p>
             </div>
             <RegisterForm />
+            {/* <SocialAuth /> */}
+            {/* TODO fix style issues with social auth */}
             <p className="mt-4 text-sm font-light text-gray-500">
                 Already have an account?{' '}
                 <Link

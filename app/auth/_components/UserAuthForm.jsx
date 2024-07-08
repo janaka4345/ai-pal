@@ -37,7 +37,7 @@ export function UserAuthForm({ className, ...props }) {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                     control={form.control}
                     name="username"
@@ -56,7 +56,7 @@ export function UserAuthForm({ className, ...props }) {
                     control={form.control}
                     name="password"
                     render={({ field }) => (
-                        <FormItem className="mt-0">
+                        <FormItem className="mt-4">
                             <FormLabel>Password</FormLabel>
                             <FormControl>
                                 <Input
@@ -70,7 +70,9 @@ export function UserAuthForm({ className, ...props }) {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Sign In with Email</Button>
+                <Button className="mt-4 w-full" type="submit">
+                    Sign In with Email
+                </Button>
             </form>
         </Form>
     )
