@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
-// import GoogleProvider from 'next-auth/providers/google'
+import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import prisma from '@/lib/prismaClient'
 import { PrismaAdapter } from '@auth/prisma-adapter'
@@ -14,6 +14,7 @@ export const authOptions = {
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
         }),
+        GoogleProvider({}),
         // ...add more providers here
         CredentialsProvider({
             // The name to display on the sign in form (e.g. 'Sign in with...')

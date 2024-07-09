@@ -24,7 +24,7 @@ export default function SocialAuth() {
         ) : (
            <Icons.gitHub className="mr-2 h-4 w-4" />
         )}{" "} */}
-                GitHub
+                Google
             </Button>
             <Button
                 variant="outline"
@@ -36,7 +36,7 @@ export default function SocialAuth() {
         ) : (
            <Icons.gitHub className="mr-2 h-4 w-4" />
         )}{" "} */}
-                GitHub
+                Facebook
             </Button>
             <Button
                 variant="outline"
