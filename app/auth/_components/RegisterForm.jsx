@@ -17,12 +17,14 @@ import {
 } from '@/components/ui/form'
 
 import { Input } from '@/components/ui/input'
-import { registerSchema } from '@/schema/formSchema'
+// import { registerSchema } from '@/schema/formSchema'
+import { registerFormSchema } from '@/lib/shema'
+import axios from 'axios'
 // import { registerAction }
 
 export default function RegisterForm() {
     const form = useForm({
-        resolver: zodResolver(registerSchema),
+        resolver: zodResolver(registerFormSchema),
         defaultValues: {
             firstName: '',
             lastName: '',
@@ -33,6 +35,23 @@ export default function RegisterForm() {
         },
     })
     async function onSubmit(values) {
+        try {
+            const response = await axios.post('/api/manualAuth/register', {
+                values: values,
+            })
+            if (response.data.success) {
+                toast.success(response?.data?.success)
+            }
+
+            if (response.data.error) {
+                toast.error(response?.data?.error)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('something went wrong')
+        }
+
+        console.log(values)
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         // try {
