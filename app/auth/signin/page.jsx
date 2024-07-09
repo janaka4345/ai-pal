@@ -1,8 +1,7 @@
 import Link from 'next/link'
 
-import { Button } from '@/components/ui/button'
-import { UserAuthForm } from '../_components/UserAuthForm'
 import SocialAuth from '../_components/SocialAuth'
+import { UserAuthForm } from '../_components/UserAuthForm'
 
 // export const metadata = {
 //   title: "Authentication",

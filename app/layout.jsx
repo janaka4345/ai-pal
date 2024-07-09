@@ -3,6 +3,7 @@ import NavBar from '@/components/custom/NavBar'
 import { Inter } from 'next/font/google'
 // import SessionProvider from './api/auth/_components/SessionProvider'
 import './globals.css'
+import { Toaster } from 'sonner'
 
 //TODO remove client side session provider
 const inter = Inter({ subsets: ['latin'] })
@@ -21,6 +22,7 @@ export default async function RootLayout({ children }) {
                 <NavBar />
                 <main className="pt-[10dvh]">{children}</main>
                 {/* </SessionProvider> */}
+                <Toaster richColors />
             </body>
         </html>
     )
