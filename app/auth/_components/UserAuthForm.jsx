@@ -16,23 +16,39 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-const formSchema = z.object({
-    username: z.string().min(2).max(50),
-    password: z.string().min(2).max(50),
-})
+import { userAuthformSchema } from '@/lib/shema'
+import axios from 'axios'
+import { toast } from 'sonner'
+// import axios from 'axios'
 
 export function UserAuthForm({ className, ...props }) {
     const form = useForm({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(userAuthformSchema),
         defaultValues: {
-            username: '',
+            email: '',
             password: '',
         },
     })
-    function onSubmit(values) {
+
+    async function onSubmit(values) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
+
+        try {
+            const res = await axios.post('/api/manualAuth/login', {
+                values: values,
+            })
+            // console.log(res)
+            if (res?.data?.success) {
+                toast.success(res?.data?.success)
+            }
+            if (res?.data?.error) {
+                toast.error(res?.data?.error)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('something went wrong')
+        }
     }
 
     return (
@@ -40,10 +56,10 @@ export function UserAuthForm({ className, ...props }) {
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                     control={form.control}
-                    name="username"
+                    name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>Email</FormLabel>
                             <FormControl>
                                 <Input placeholder="shadcn" {...field} />
                             </FormControl>
