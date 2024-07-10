@@ -13,16 +13,19 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import Link from 'next/link'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function User() {
-    const session = await getServerSession()
-    // console.log(session)
+    const session = await getServerSession(authOptions)
+    console.log({ session })
+
     if (session?.user) {
+        // console.log(session)
         return (
             <>
                 <DropdownMenu modal={false}>
                     <DropdownMenuTrigger asChild>
-                        <Avatar>
+                        <Avatar className="cursor-pointer">
                             <AvatarImage
                                 src={session?.user.image}
                                 alt="avatar"
@@ -56,7 +59,7 @@ export default async function User() {
         return (
             <>
                 <Link
-                    href="/api/auth/signin"
+                    href="/auth/signin"
                     className={cn(buttonVariants({ variant: 'default' }))}
                 >
                     log In
