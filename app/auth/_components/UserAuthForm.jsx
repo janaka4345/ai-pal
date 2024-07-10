@@ -1,6 +1,5 @@
 'use client'
 
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
@@ -8,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -17,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 
 import { userAuthformSchema } from '@/lib/shema'
-import axios from 'axios'
+import { signIn } from 'next-auth/react'
 import { toast } from 'sonner'
 // import axios from 'axios'
 
@@ -31,19 +29,16 @@ export function UserAuthForm({ className, ...props }) {
     })
 
     async function onSubmit(values) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-
         try {
-            const res = await axios.post('/api/manualAuth/login', {
-                values: values,
+            const res = await signIn('credentials', {
+                email: values.email,
+                password: values.password,
+                redirect: true,
+                callbackUrl: '/dashboard',
             })
-            // console.log(res)
-            if (res?.data?.success) {
-                toast.success(res?.data?.success)
-            }
-            if (res?.data?.error) {
-                toast.error(res?.data?.error)
+            console.log({ res })
+            if (res?.error) {
+                toast.error(res?.error)
             }
         } catch (error) {
             console.log(error)
@@ -86,7 +81,11 @@ export function UserAuthForm({ className, ...props }) {
                         </FormItem>
                     )}
                 />
-                <Button className="mt-4 w-full" type="submit">
+                <Button
+                    className="mt-4 w-full"
+                    type="submit"
+                    disabled={form.formState.isSubmitting}
+                >
                     Sign In with Email
                 </Button>
             </form>
