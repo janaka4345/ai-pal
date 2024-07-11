@@ -18,7 +18,10 @@ export const authOptions = {
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
         }),
-        GoogleProvider({}),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        }),
         // ...add more providers here
         CredentialsProvider({
             // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -78,13 +81,7 @@ export const authOptions = {
             // })
             // const user = await res.json()
 
-            // If no error and we have user data, return it
-            // if (res.ok && user) {
-            //     return user
-            // }
-            // Return null if user data could not be retrieved
-            // return null
-            // }
+
         }),
     ],
     callbacks: {
@@ -95,13 +92,28 @@ export const authOptions = {
         //     return baseUrl
         // },Ks
         async session({ session, user, token }) {
-            session.user.id = token.sub
+            if (session?.user && token?.sub) {
+                session.user.id = token.sub
+            }
             return session
         },
         async jwt({ token, user, account, profile, isNewUser }) {
 
             // console.log({ token, user, account, profile, isNewUser });
             return token
+        }
+    },
+
+    events: {
+        async linkAccount({ user }) {
+            await prisma.user.update({
+                where: {
+                    id: user.id
+                },
+                data: {
+                    emailVerified: new Date()
+                }
+            })
         }
     },
 
