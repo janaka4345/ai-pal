@@ -30,7 +30,9 @@ export default async function User() {
                                 src={session?.user.image}
                                 alt="avatar"
                             />
-                            <AvatarFallback alt="avatar">AV</AvatarFallback>
+                            <AvatarFallback alt="avatar">
+                                {session?.user.name}
+                            </AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
