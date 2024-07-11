@@ -1,7 +1,15 @@
+'use client'
 import { Button } from '@/components/ui/button'
+import { signIn } from 'next-auth/react'
 // import { authLoginAction } from '../../../serverActions/auth/authLoginAction'
 
 export default function SocialAuth() {
+    const handleClick = async (provider) => {
+        await signIn(provider, {
+            redirect: true,
+            callbackUrl: '/dashboard',
+        })
+    }
     return (
         <>
             <div className="relative my-4">
@@ -18,6 +26,7 @@ export default function SocialAuth() {
                 variant="outline"
                 type="button"
                 // disabled={isLoading}
+                onClick={() => handleClick('google')}
             >
                 {/* {isLoading ? (
            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -30,6 +39,7 @@ export default function SocialAuth() {
                 variant="outline"
                 type="button"
                 // disabled={isLoading}
+                onClick={() => handleClick('facebook')}
             >
                 {/* {isLoading ? (
            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -42,6 +52,7 @@ export default function SocialAuth() {
                 variant="outline"
                 type="button"
                 // disabled={isLoading}
+                onClick={() => handleClick('github')}
             >
                 {/* {isLoading ? (
            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
