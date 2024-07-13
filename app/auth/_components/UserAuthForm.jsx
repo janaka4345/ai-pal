@@ -41,7 +41,6 @@ export function UserAuthForm({ className, ...props }) {
                 toast.error(res?.error)
             }
         } catch (error) {
-            console.log(error)
             toast.error('something went wrong')
         }
     }
