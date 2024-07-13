@@ -20,9 +20,11 @@ import { Input } from '@/components/ui/input'
 // import { registerSchema } from '@/schema/formSchema'
 import { registerFormSchema } from '@/lib/shema'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 // import { registerAction }
 
 export default function RegisterForm() {
+    const router = useRouter()
     const form = useForm({
         resolver: zodResolver(registerFormSchema),
         defaultValues: {
@@ -41,6 +43,7 @@ export default function RegisterForm() {
             })
             if (response.data.success) {
                 toast.success(response?.data?.success)
+                router.push(`/auth/verifyEmail?email=${values.email}`)
             }
 
             if (response.data.error) {
