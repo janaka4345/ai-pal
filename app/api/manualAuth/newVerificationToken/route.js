@@ -1,12 +1,13 @@
+import { generateToken } from "@/lib/generateToken";
 import prisma from "@/lib/prismaClient";
 import { verificationTokenSchema } from "@/lib/shema";
 import { NextResponse } from "next/server";
 
 export async function POST(req, res) {
-    console.log('post ran');
+    // console.log('post ran');
     const { values } = await req.json()
-    const validatedFields = verificationTokenSchema.safeParse(values)
-    // console.log(validatedFields);
+    const validatedFields = verificationTokenSchema.partial().safeParse(values)
+    console.log(validatedFields);
 
     if (!validatedFields.success) {
         return NextResponse.json({ error: 'Invalid Email Address' })
@@ -20,11 +21,10 @@ export async function POST(req, res) {
         },
     })
     if (!existingToken) {
-        return NextResponse.json({ error: 'No such Email address has registered' })
+        return NextResponse.json({ error: 'No such Email address has been registered' })
     }
 
-    const token = Math.floor((Math.random()) * 999999).toString()
-    const expires = new Date(new Date().getTime() + 3600 * 1000)
+    const { token, expires } = generateToken()
 
 
     // console.log({ token, expires });
