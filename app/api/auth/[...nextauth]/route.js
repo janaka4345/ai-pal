@@ -8,7 +8,6 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 
-
 export const authOptions = {
     // Configure one or more authentication providers
     adapter: PrismaAdapter(prisma),
@@ -24,22 +23,14 @@ export const authOptions = {
         }),
         // ...add more providers here
         CredentialsProvider({
-            // The name to display on the sign in form (e.g. 'Sign in with...')
-            // The credentials is used to generate a suitable form on the sign in page.
-            // You can specify whatever fields you are expecting to be submitted.
-            // e.g. domain, username, password, 2FA token, etc.
-            // You can pass any HTML attribute to the <input> tag through the object.
 
             async authorize(credentials) {
-                // console.log(credentials);
                 const validatedFields = userAuthformSchema.safeParse(credentials)
-                // console.log(validatedFields);
-                // This is where you need to retrieve user data
-                // to verify with credentials
-                // Docs: https://next-auth.js.org/configuration/providers/credentials
+
 
                 if (!validatedFields.success) {
-                    return null //TODO throw ann error
+                    throw new Error('Invalid Fields')
+
                 }
 
                 const { email, password } = validatedFields.data
@@ -50,8 +41,19 @@ export const authOptions = {
                     }
                 })
                 // console.log(logingUser);
-                if (!logingUser || !logingUser.password) {
-                    throw error //TODO THorow error
+                if (!logingUser || !logingUser.email) {
+                    throw new Error('User does not exist')
+                    //TODO THorow error
+                }
+                if (logingUser && logingUser.email && !logingUser.password) {
+                    throw new Error('User Signed in with a provider') //TODO elaborate message
+                    //TODO THorow error
+                }
+                if (!logingUser.emailVerified) {
+                    // return null //TODO THorow error
+                    // throw error //TODO THorow error
+                    throw new Error('verify your Email')
+
                 }
 
                 const isPasswordMatching = await compare(password, logingUser.password)
@@ -63,7 +65,8 @@ export const authOptions = {
                     console.log({ user });
                     return user
                 } else {
-                    throw error
+                    throw new Error('Invalid Credentials')
+
                 }
 
             },
@@ -90,7 +93,7 @@ export const authOptions = {
         // },
         // async redirect({ url, baseUrl }) {
         //     return baseUrl
-        // },Ks
+        // },
         async session({ session, user, token }) {
             if (session?.user && token?.sub) {
                 session.user.id = token.sub
