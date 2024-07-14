@@ -36,11 +36,12 @@ export function UserAuthForm({ className, ...props }) {
                 redirect: true,
                 callbackUrl: '/dashboard',
             })
-            console.log({ res })
+            // console.log({ res })
             if (res?.error) {
                 toast.error(res?.error)
             }
         } catch (error) {
+            console.log(error)
             toast.error('something went wrong')
         }
     }
@@ -55,7 +56,10 @@ export function UserAuthForm({ className, ...props }) {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input
+                                    placeholder="example@sample.com"
+                                    {...field}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
