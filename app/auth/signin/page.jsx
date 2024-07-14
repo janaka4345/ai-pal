@@ -22,6 +22,17 @@ export default function page() {
                 </div>
                 {/* <UserAuthForm /> */}
                 <UserAuthForm />
+                <p className="text-sm text-muted-foreground">
+                    Don't remember your password?{' '}
+                    <Link
+                        className="text-primary-600 font-medium hover:underline"
+                        href="/auth/recoverPasswordRequest"
+                    >
+                        {' '}
+                        Click me
+                    </Link>
+                </p>
+
                 <SocialAuth />
             </div>
             <p className="h-fit text-sm font-light text-gray-500">
