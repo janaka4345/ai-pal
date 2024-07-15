@@ -64,8 +64,17 @@ model Session {
 
 model VerificationToken {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String
-  token   String   @unique @default(cuid()) @db.String
+  email   String   @unique
+  token   String
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordToken {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  email   String   @unique
+  token   String
   expires DateTime
 
   @@unique([email, token])
