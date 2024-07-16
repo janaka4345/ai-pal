@@ -19,150 +19,211 @@ import {
     InputOTPSeparator,
     InputOTPSlot,
 } from '@/components/ui/input-otp'
+
 import axios from 'axios'
-import { passwordTokenSchema } from '@/lib/shema'
+import { passwordResetSchema } from '@/lib/shema'
 import { useSearchParams } from 'next/navigation'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function RecoverPasswordVerifyForm() {
     const router = useRouter()
     const email = useSearchParams().get('email')
-    const token = useSearchParams().get('token')
-    console.log({ email, token })
+
+    const [verify, setVerify] = useState(false)
+
+    console.log({ email })
     const form = useForm({
-        resolver: zodResolver(passwordTokenSchema),
+        resolver: zodResolver(passwordResetSchema),
         defaultValues: {
             email: email || '',
             passwordToken: '',
+            newPassword: '',
+            confirmPassword: '',
         },
     })
     async function onSubmit(values) {
         console.log(values)
-        router.push(
-            `/auth/recoverPasswordVerify/?email=${values.email}&token=${values.passwordToken}`
+
+        const response = await axios.post(
+            '/api/manualAuth/recoverPassword/verify',
+            {
+                values,
+            }
         )
-        // const response = await axios.post(
-        //     '/api/manualAuth/recoverPassword/verify',
-        //     {
-        //         values,
-        //     }
-        // )
-        // console.log(response)
-        // if (response.data.success) {
-        //     toast.success(response.data.success)
-        //     router.push('/auth/signin')
-        // }
-        // if (response.data.error) {
-        //     toast.error(response.data.error)
-        // }
+        console.log(response)
+        if (response.data.success) {
+            toast.success(response.data.success)
+            router.push('/auth/signin')
+        }
+        if (response.data.error) {
+            toast.error(response.data.error)
+        }
     }
-    // async function requestNewToken() {
-    // const response = await axios.post('/api/manualAuth/verifyEmail', {
-    //     values,
-    // })
-    // console.log(response)
-    // if (response.data.success) {
-    //     toast.success(response.data.success)
-    //     router.push('/auth/signin')
-    // }
-    // if (response.data.error) {
-    //     toast.error(response.data.error)
-    // }
-    // if (!email && !form.getValues('email')) {
-    //     return toast.error('Empty email is provided')
-    // }
-    // const res = await axios.post('/api/manualAuth/newpasswordToken/', {
-    //     values: { email: email || form.getValues('email') },
-    // })
-    // console.log(res)
-    // if (res.data.success) {
-    //     toast.success(res.data.success)
-    //     router.refresh()
-    // }
-    // if (res.data.error) {
-    //     toast.error(res.data.error)
-    // }
-    // }
+    async function requestNewToken() {
+        console.log(form.getValues('email'))
+
+        if (!email && !form.getValues('email')) {
+            return toast.error('Empty email is provided')
+        }
+        const res = await axios.post('/api/manualAuth/newPasswordToken/', {
+            values: { email: email || form.getValues('email') },
+        })
+        console.log(res)
+        if (res.data.success) {
+            toast.success(res.data.success)
+            router.refresh()
+        }
+        if (res.data.error) {
+            toast.error(res.data.error)
+        }
+    }
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                {email ? (
-                    <p>
-                        {' '}
-                        Please enter the one-time password sent to your email.
-                        <br />
-                        <span>{email}</span>
-                    </p>
-                ) : (
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Enter Your Email</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="sample@example.com"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                )}
-                <FormField
-                    control={form.control}
-                    name="passwordToken"
-                    render={({ field }) => (
-                        <FormItem>
-                            {/* <FormLabel>
+        <>
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                >
+                    {verify ? (
+                        <>
+                            <FormField
+                                key="newPassword"
+                                control={form.control}
+                                name="newPassword"
+                                render={({ field }) => (
+                                    <FormItem className="col-start-1 col-end-2 row-start-3">
+                                        <FormLabel>New Password</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} type="password" />
+                                        </FormControl>
+                                        {/* <FormDescription>
+                This is your public display name.
+              </FormDescription> */}
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                key="confirmPassword"
+                                control={form.control}
+                                name="confirmPassword"
+                                render={({ field }) => (
+                                    <FormItem className="col-start-2 col-end-3 row-start-3">
+                                        <FormLabel>Confirm Password</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} type="password" />
+                                        </FormControl>
+                                        {/* <FormDescription>
+                This is your public display name.
+              </FormDescription> */}
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <Button type="submit">Submit</Button>
+                        </>
+                    ) : (
+                        <>
+                            {email ? (
+                                <p>
+                                    {' '}
+                                    Please enter the one-time password sent to
+                                    your email.
+                                    <br />
+                                    <span>{email}</span>
+                                </p>
+                            ) : (
+                                <FormField
+                                    key="email"
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                Enter Your Email
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="sample@example.com"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            )}
+                            <FormField
+                                key="passwordToken"
+                                control={form.control}
+                                name="passwordToken"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        {/* <FormLabel>
                                         
                                         Please enter the one-time password sent
                                         to your email.
                                     </FormLabel> */}
-                            <FormControl>
-                                <InputOTP maxLength={6} {...field}>
-                                    <InputOTPGroup>
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={0}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={1}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={2}
-                                        />
-                                    </InputOTPGroup>
-                                    <InputOTPSeparator />
-                                    <InputOTPGroup>
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={3}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={4}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={5}
-                                        />
-                                    </InputOTPGroup>
-                                </InputOTP>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                                        <FormControl>
+                                            <InputOTP maxLength={6} {...field}>
+                                                <InputOTPGroup>
+                                                    <InputOTPSlot
+                                                        className="border-black bg-gray-200"
+                                                        index={0}
+                                                    />
+                                                    <InputOTPSlot
+                                                        className="border-black bg-gray-200"
+                                                        index={1}
+                                                    />
+                                                    <InputOTPSlot
+                                                        className="border-black bg-gray-200"
+                                                        index={2}
+                                                    />
+                                                </InputOTPGroup>
+                                                <InputOTPSeparator />
+                                                <InputOTPGroup>
+                                                    <InputOTPSlot
+                                                        className="border-black bg-gray-200"
+                                                        index={3}
+                                                    />
+                                                    <InputOTPSlot
+                                                        className="border-black bg-gray-200"
+                                                        index={4}
+                                                    />
+                                                    <InputOTPSlot
+                                                        className="border-black bg-gray-200"
+                                                        index={5}
+                                                    />
+                                                </InputOTPGroup>
+                                            </InputOTP>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
 
-                <Button type="submit">Submit</Button>
-            </form>
-        </Form>
+                            <Button
+                                onClick={() => {
+                                    setVerify(true)
+                                    console.log('button clicked')
+                                }}
+                            >
+                                Verify
+                            </Button>
+                        </>
+                    )}
+                </form>
+            </Form>
+            <p>
+                Dindt recive the code?
+                <Button variant="link" onClick={requestNewToken}>
+                    Request Another
+                </Button>
+            </p>
+        </>
     )
 }
