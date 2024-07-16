@@ -5,8 +5,8 @@ import Link from 'next/link'
 
 export default function NavBar() {
     return (
-        <nav className="fixed start-0 top-0 z-20 h-[10dvh] w-full border-b border-gray-200 backdrop-blur-md">
-            <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-center p-4">
+        <nav className="fixed start-0 top-0 z-20 h-[8dvh] w-full border-b border-gray-200 backdrop-blur-md md:h-[10dvh]">
+            <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-around p-4">
                 <Link href="/" className="flex items-center space-x-3">
                     <svg
                         className="h-[40px] w-[60px]"
@@ -163,7 +163,7 @@ export default function NavBar() {
                 {/* TODO session change fix */}
                 <Link
                     href="/dashboard"
-                    className={cn(buttonVariants(), 'mr-4')}
+                    className={cn(buttonVariants(), 'ml-auto mr-4')}
                 >
                     Dashboard
                 </Link>

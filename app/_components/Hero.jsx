@@ -4,7 +4,7 @@ import Companies from './Companies'
 export default function Hero() {
     return (
         <section id="hero" className="">
-            <div className="mx-auto h-[calc(100dvh-10dvh)] max-w-screen-xl px-4 py-8 text-center lg:py-16">
+            <div className="mx-auto flex h-[calc(100dvh-10dvh)] max-w-screen-xl flex-col px-4 py-8 text-center lg:py-16">
                 <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-primary md:text-5xl lg:text-6xl">
                     <span className="bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-6xl text-transparent lg:text-8xl">
                         Create.
@@ -26,7 +26,7 @@ export default function Hero() {
                 <div className="mt-16 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                     <Link
                         href="/dashboard"
-                        className="inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
+                        className="mt-auto inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
                     >
                         Get started
                         <svg

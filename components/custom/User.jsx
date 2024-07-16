@@ -17,7 +17,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function User() {
     const session = await getServerSession(authOptions)
-    console.log({ session })
+    // console.log({ session })
 
     if (session?.user) {
         // console.log(session)
