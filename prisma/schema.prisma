@@ -25,7 +25,7 @@ model User {
   tierId         String?    @db.ObjectId
   Payments       Payments[]
   tier           Tier?      @relation(fields: [tierId], references: [id])
-  tokenRemaining Int        @default(200)
+  tokensUsed     Int        @default(0)
   tokensExpireAt DateTime?
 }
 
