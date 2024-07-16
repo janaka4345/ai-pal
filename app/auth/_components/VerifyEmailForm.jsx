@@ -83,86 +83,95 @@ export default function VerifyEmailForm() {
         }
     }
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="w-2/3 space-y-6"
-            >
-                {email ? (
-                    <p>
-                        {' '}
-                        Please enter the one-time password sent to your email.
-                        <br />
-                        <span>{email}</span>
-                    </p>
-                ) : (
+        <>
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="w-2/3 space-y-6"
+                >
+                    {email ? (
+                        <p>
+                            {' '}
+                            Please enter the one-time password sent to your
+                            email.
+                            <br />
+                            <span>{email}</span>
+                        </p>
+                    ) : (
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Enter Your Email</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="sample@example.com"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    )}
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="verificationToken"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Enter Your Email</FormLabel>
+                                {/* <FormLabel>
+                                        
+                                        Please enter the one-time password sent
+                                        to your email.
+                                    </FormLabel> */}
                                 <FormControl>
-                                    <Input
-                                        placeholder="sample@example.com"
-                                        {...field}
-                                    />
+                                    <InputOTP maxLength={6} {...field}>
+                                        <InputOTPGroup>
+                                            <InputOTPSlot
+                                                className="border-black bg-gray-200"
+                                                index={0}
+                                            />
+                                            <InputOTPSlot
+                                                className="border-black bg-gray-200"
+                                                index={1}
+                                            />
+                                            <InputOTPSlot
+                                                className="border-black bg-gray-200"
+                                                index={2}
+                                            />
+                                        </InputOTPGroup>
+                                        <InputOTPSeparator />
+                                        <InputOTPGroup>
+                                            <InputOTPSlot
+                                                className="border-black bg-gray-200"
+                                                index={3}
+                                            />
+                                            <InputOTPSlot
+                                                className="border-black bg-gray-200"
+                                                index={4}
+                                            />
+                                            <InputOTPSlot
+                                                className="border-black bg-gray-200"
+                                                index={5}
+                                            />
+                                        </InputOTPGroup>
+                                    </InputOTP>
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                )}
-                <FormField
-                    control={form.control}
-                    name="verificationToken"
-                    render={({ field }) => (
-                        <FormItem>
-                            {/* <FormLabel>
-                                        
-                                        Please enter the one-time password sent
-                                        to your email.
-                                    </FormLabel> */}
-                            <FormControl>
-                                <InputOTP maxLength={6} {...field}>
-                                    <InputOTPGroup>
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={0}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={1}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={2}
-                                        />
-                                    </InputOTPGroup>
-                                    <InputOTPSeparator />
-                                    <InputOTPGroup>
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={3}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={4}
-                                        />
-                                        <InputOTPSlot
-                                            className="border-black bg-gray-200"
-                                            index={5}
-                                        />
-                                    </InputOTPGroup>
-                                </InputOTP>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
 
-                <Button type="submit">Verify Email</Button>
-            </form>
-        </Form>
+                    <Button type="submit">Verify Email</Button>
+                </form>
+            </Form>
+            <p>
+                Dindt recive the code?
+                <Button variant="link" onClick={requestNewToken}>
+                    Request Another
+                </Button>
+            </p>
+        </>
     )
 }
