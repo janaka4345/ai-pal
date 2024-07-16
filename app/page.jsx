@@ -15,9 +15,6 @@ export default function LandingPage() {
             <Pricing />
             <Testimonials />
             <Footer />
-
-            <Link href="/testAuthRoute">auth test route</Link>
-            <br />
         </section>
     )
 }
