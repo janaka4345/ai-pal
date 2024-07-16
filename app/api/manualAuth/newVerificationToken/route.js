@@ -10,7 +10,7 @@ export async function POST(req, res) {
     console.log(validatedFields);
 
     if (!validatedFields.success) {
-        return NextResponse.json({ error: 'Invalid Email Address' })
+        return NextResponse.json({ error: 'Invalid Fields' })
     }
     const { email } = validatedFields.data
 
