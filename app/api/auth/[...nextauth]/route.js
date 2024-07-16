@@ -102,6 +102,18 @@ export const authOptions = {
     },
 
     events: {
+        async createUser({ user }) {
+            await prisma.user.update({
+                where: {
+                    id: user.id
+                },
+                data: {
+                    // Free tier id is hardcoded
+                    tierId: process.env.FREE_TIER_ID,
+                    tokensExpireAt: new Date(new Date().setDate(new Date().getDate() + 14))
+                }
+            })
+        },
         async linkAccount({ user }) {
             await prisma.user.update({
                 where: {
