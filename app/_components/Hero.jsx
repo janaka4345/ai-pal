@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Companies from './Companies'
 
 export default function Hero() {
@@ -23,7 +24,7 @@ export default function Hero() {
                     chat buddy? We've got you covered.
                 </p>
                 <div className="mt-16 flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-                    <a
+                    <Link
                         href="/dashboard"
                         className="inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
                     >
@@ -39,13 +40,13 @@ export default function Hero() {
                                 d="M1 5h12m0 0L9 1m4 4L9 9"
                             />
                         </svg>
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                         href="#"
                         className="rounded-lg border border-gray-200 bg-white px-5 py-3 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:ms-4"
                     >
                         Learn more
-                    </a>
+                    </Link>
                 </div>
             </div>
             <Companies />

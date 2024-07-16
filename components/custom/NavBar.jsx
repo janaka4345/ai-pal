@@ -7,7 +7,7 @@ export default function NavBar() {
     return (
         <nav className="fixed start-0 top-0 z-20 h-[10dvh] w-full border-b border-gray-200 backdrop-blur-md">
             <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-center p-4">
-                <a href="/" className="flex items-center space-x-3">
+                <Link href="/" className="flex items-center space-x-3">
                     <svg
                         className="h-[40px] w-[60px]"
                         fill="none"
@@ -96,42 +96,42 @@ export default function NavBar() {
                     <span className="hidden self-center whitespace-nowrap text-2xl font-semibold md:block">
                         AI Pal
                     </span>
-                </a>
+                </Link>
 
                 <div className="mx-auto hidden w-full items-center justify-between md:flex md:w-auto">
                     <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0">
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href="/"
                                 className="rounded bg-blue-700 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-blue-700"
                                 aria-current="page"
                             >
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#about"
+                            <Link
+                                href="/#about"
                                 className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                             >
                                 About
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#pricing"
+                            <Link
+                                href="/#pricing"
                                 className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                             >
                                 Pricing
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#contact"
+                            <Link
+                                href="/#contact"
                                 className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                             >
                                 Contact
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

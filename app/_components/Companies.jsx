@@ -1,12 +1,14 @@
+import Link from 'next/link'
+
 export default function Companies() {
     return (
-        <section className="bg-white">
+        <section id="companies" className="bg-white">
             <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-16">
                 <h2 className="mb-8 text-center text-3xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-4xl lg:mb-16">
                     You’ll be in good company
                 </h2>
                 <div className="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6">
-                    <a href="#" className="flex items-center justify-center">
+                    <Link href="#" className="flex items-center justify-center">
                         <svg
                             className="h-9 hover:text-gray-900"
                             viewBox="0 0 125 35"
@@ -20,8 +22,8 @@ export default function Companies() {
                                 fill="currentColor"
                             />
                         </svg>
-                    </a>
-                    <a href="#" className="flex items-center justify-center">
+                    </Link>
+                    <Link href="#" className="flex items-center justify-center">
                         <svg
                             className="h-9 hover:text-gray-900"
                             viewBox="0 0 86 29"
@@ -35,8 +37,8 @@ export default function Companies() {
                                 fill="currentColor"
                             />
                         </svg>
-                    </a>
-                    <a href="#" className="flex items-center justify-center">
+                    </Link>
+                    <Link href="#" className="flex items-center justify-center">
                         <svg
                             className="h-8 hover:text-gray-900"
                             viewBox="0 0 151 34"
@@ -60,9 +62,9 @@ export default function Companies() {
                                 </clipPath>
                             </defs>
                         </svg>
-                    </a>
+                    </Link>
 
-                    <a href="#" className="flex items-center justify-center">
+                    <Link href="#" className="flex items-center justify-center">
                         <svg
                             className="h-9 hover:text-gray-900"
                             viewBox="0 0 124 38"
@@ -74,8 +76,8 @@ export default function Companies() {
                                 fill="currentColor"
                             />
                         </svg>
-                    </a>
-                    <a href="#" className="flex items-center justify-center">
+                    </Link>
+                    <Link href="#" className="flex items-center justify-center">
                         <svg
                             className="h-9 hover:text-gray-900"
                             viewBox="0 0 137 37"
@@ -155,8 +157,8 @@ export default function Companies() {
                                 fill="currentColor"
                             />
                         </svg>
-                    </a>
-                    <a href="#" className="flex items-center justify-center">
+                    </Link>
+                    <Link href="#" className="flex items-center justify-center">
                         <svg
                             className="h-6 hover:text-gray-900"
                             viewBox="0 0 124 21"
@@ -212,7 +214,7 @@ export default function Companies() {
                                 fill="currentColor"
                             />
                         </svg>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

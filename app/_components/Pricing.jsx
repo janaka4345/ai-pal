@@ -1,6 +1,8 @@
+import Link from 'next/link'
+
 export default function Pricing() {
     return (
-        <section className="bg-white" id="pricing">
+        <section id="pricing" className="bg-white" id="pricing">
             <div className="mx-auto max-w-screen-xl px-4 py-4 lg:px-6 lg:py-16">
                 <div className="mx-auto mb-8 max-w-screen-md text-center lg:mb-12">
                     <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900">
@@ -118,12 +120,12 @@ export default function Pricing() {
                                 </span>
                             </li>
                         </ul>
-                        <a
+                        <Link
                             href="#"
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-200 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4"
+                            className="focus:ring-primary-200 rounded-lg bg-primary-foreground px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-primary hover:text-white focus:ring-4"
                         >
                             Get started
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="mx-auto flex max-w-lg flex-col rounded-lg border border-gray-100 bg-white p-6 text-center text-gray-900 shadow xl:p-8">
@@ -231,12 +233,12 @@ export default function Pricing() {
                                 </span>
                             </li>
                         </ul>
-                        <a
+                        <Link
                             href="#"
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-200 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4"
+                            className="focus:ring-primary-200 rounded-lg bg-primary-foreground px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-primary hover:text-white focus:ring-4"
                         >
                             Get started
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="mx-auto flex max-w-lg flex-col rounded-lg border border-gray-100 bg-white p-6 text-center text-gray-900 shadow xl:p-8">
@@ -346,12 +348,12 @@ export default function Pricing() {
                                 </span>
                             </li>
                         </ul>
-                        <a
+                        <Link
                             href="#"
-                            className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-200 rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4"
+                            className="focus:ring-primary-200 rounded-lg bg-primary-foreground px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-primary hover:text-white focus:ring-4"
                         >
                             Get started
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,10 @@
+import Link from 'next/link'
+
 export default function Footer() {
     return (
-        <footer className="bg-white p-4 md:p-8 lg:p-10" id="contact">
+        <footer id="contact" className="bg-white p-4 md:p-8 lg:p-10">
             <div className="mx-auto max-w-screen-xl text-center">
-                <a
+                <Link
                     href="#"
                     className="flex flex-col items-center justify-center text-2xl font-semibold text-gray-900"
                 >
@@ -118,53 +120,53 @@ export default function Footer() {
                     <span className="self-center whitespace-nowrap text-2xl font-semibold">
                         AI Pal
                     </span>
-                </a>
+                </Link>
                 <p className="my-6 text-gray-500">
                     Open-source library of over 400+ web components and
                     interactive elements built for better web.
                 </p>
                 <ul className="mb-6 flex flex-wrap items-center justify-center text-gray-900">
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6">
+                        <Link href="#" className="mr-4 hover:underline md:mr-6">
                             About
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6">
+                        <Link href="#" className="mr-4 hover:underline md:mr-6">
                             Premium
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6">
+                        <Link href="#" className="mr-4 hover:underline md:mr-6">
                             Campaigns
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6">
+                        <Link href="#" className="mr-4 hover:underline md:mr-6">
                             Blog
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6">
+                        <Link href="#" className="mr-4 hover:underline md:mr-6">
                             Affiliate Program
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6">
+                        <Link href="#" className="mr-4 hover:underline md:mr-6">
                             FAQs
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="mr-4 hover:underline md:mr-6">
+                        <Link href="#" className="mr-4 hover:underline md:mr-6">
                             Contact
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <span className="text-sm text-gray-500 sm:text-center">
                     © 2024{' '}
-                    <a href="#" className="hover:underline">
+                    <Link href="#" className="hover:underline">
                         AI PAL
-                    </a>
+                    </Link>
                     . All Rights Reserved.
                 </span>
             </div>
