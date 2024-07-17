@@ -1,3 +1,4 @@
+import { checkTokenLimit, increaseTokensUsed } from '@/lib/apiLimit';
 import { NextResponse } from 'next/server'
 import Replicate from 'replicate'
 
@@ -7,6 +8,12 @@ const replicate = new Replicate()
 // }
 export async function POST(req) {
     try {
+        const isTokensValid = await checkTokenLimit()
+        console.log({ isTokensValid });
+        if (!isTokensValid) {
+            return new NextResponse({ error: 'Your valid tokens are over.Please purchase new tokens' }, { status: 500 })
+
+        }
         // const { userId } = auth();
         const body = await req.json()
         const { imagePrompt } = body
@@ -43,6 +50,7 @@ export async function POST(req) {
         // if (!isPro) {
         //     await incrementApiLimit();
         // }
+        await increaseTokensUsed(parseInt(process.env.TOKEN_USAGE_FOR_CONTENT_GEN))
 
         return NextResponse.json(response, { status: 200 })
     } catch (error) {

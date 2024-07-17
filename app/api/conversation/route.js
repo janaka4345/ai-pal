@@ -1,3 +1,4 @@
+import { checkTokenLimit, increaseTokensUsed } from '@/lib/apiLimit'
 import { NextResponse } from 'next/server'
 // import { Configuration, OpenAIApi } from "openai";
 import OpenAI from 'openai'
@@ -13,6 +14,12 @@ const openai = new OpenAI({
 // const openai = new OpenAIApi(configuration);
 
 export async function POST(req) {
+    const isTokensValid = await checkTokenLimit()
+    console.log({ isTokensValid });
+    if (!isTokensValid) {
+        return new NextResponse({ error: 'Your valid tokens are over.Please purchase new tokens' }, { status: 500 })
+
+    }
     try {
         // const { userId } = auth();
         const body = await req.json()
@@ -50,6 +57,8 @@ export async function POST(req) {
         // }
 
         console.log('ran try')
+        await increaseTokensUsed(parseInt(process.env.TOKEN_USAGE_FOR_CONVERSATIONS))
+
         return NextResponse.json(response.choices[0].message, { status: 200 })
     } catch (error) {
         // console.log('ran catch');
