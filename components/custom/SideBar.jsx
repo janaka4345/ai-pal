@@ -69,7 +69,7 @@ export default function SideBar() {
     const pathname = usePathname()
     return (
         <>
-            <div className="h-full w-full space-y-4 bg-primary py-4 text-white">
+            <div className="h-full w-full space-y-4 bg-gray-900 py-4 text-white">
                 <div className="flex h-full flex-col gap-1">
                     {routes.map((route) => (
                         <Link

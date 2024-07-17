@@ -161,7 +161,7 @@ export default function Testimonials() {
                     </figure>
                 </div>
                 <div className="text-center">
-                    <button className="mb-2 mr-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">
+                    <button className="mb-2 mr-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200">
                         Show more...
                     </button>
                 </div>
