@@ -23,6 +23,12 @@ export default async function User() {
         // console.log(session)
         return (
             <>
+                <Link
+                    href="/dashboard"
+                    className={cn(buttonVariants(), 'ml-auto mr-4')}
+                >
+                    Dashboard
+                </Link>
                 <DropdownMenu modal={false}>
                     <DropdownMenuTrigger asChild>
                         <Avatar className="cursor-pointer">
@@ -59,14 +65,20 @@ export default async function User() {
         )
     } else {
         return (
-            <>
+            <div className="flex flex-row gap-2">
+                <Link
+                    href="/auth/register"
+                    className={cn(buttonVariants({ variant: 'default' }))}
+                >
+                    Register
+                </Link>
                 <Link
                     href="/auth/signin"
                     className={cn(buttonVariants({ variant: 'default' }))}
                 >
-                    log In
+                    Log In
                 </Link>
-            </>
+            </div>
         )
     }
 }
