@@ -88,17 +88,17 @@ export const authOptions = {
         // async redirect({ url, baseUrl }) {
         //     return baseUrl
         // },
-        async session({ session, user, token }) {
+        async session({ session, token }) {
             if (session?.user && token?.sub) {
                 session.user.id = token.sub
             }
             return session
         },
-        async jwt({ token, user, account, profile, isNewUser }) {
+        // async jwt({ token, user, account, profile, isNewUser }) {
 
-            // console.log({ token, user, account, profile, isNewUser });
-            return token
-        }
+        //     // console.log({ token, user, account, profile, isNewUser });
+        //     return token
+        // }
     },
 
     events: {
@@ -108,9 +108,8 @@ export const authOptions = {
                     id: user.id
                 },
                 data: {
-                    // Free tier id is hardcoded
+                    //TODO Free tier id is hardcoded in .env - consider of fetching pros and cons
                     tierId: process.env.FREE_TIER_ID,
-                    tokensExpireAt: new Date(new Date().setDate(new Date().getDate() + 14))
                 }
             })
         },

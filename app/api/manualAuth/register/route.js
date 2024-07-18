@@ -43,9 +43,7 @@ export async function POST(req, res) {
                 name: firstName + ' ' + lastName,
                 email,
                 password: encryptedPassword,
-
                 tierId: process.env.FREE_TIER_ID,
-                tokensExpireAt: new Date(new Date().setDate(new Date().getDate() + 14))
             }
         })
         await prisma.verificationToken.create({
