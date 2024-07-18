@@ -7,12 +7,12 @@ import Testimonials from './_components/Testimonials'
 
 export default function LandingPage() {
     return (
-        <section>
+        <>
             <Hero />
             <About />
             <Pricing />
             <Testimonials />
             <Footer />
-        </section>
+        </>
     )
 }

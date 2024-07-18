@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Pricing() {
     return (
-        <section id="pricing" className="bg-white" id="pricing">
+        <section id="pricing" className="bg-white">
             <div className="mx-auto max-w-screen-xl px-4 py-4 lg:px-6 lg:py-16">
                 <div className="mx-auto mb-8 max-w-screen-md text-center lg:mb-12">
                     <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900">
