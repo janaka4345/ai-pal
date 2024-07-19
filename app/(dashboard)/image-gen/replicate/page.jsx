@@ -1,15 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useReplicateImageStore } from '@/store/imageStore'
 import ImageCard from './_components/ImageCard'
 import ImagePrompt from './_components/ImagePrompt'
 
 export default function ReplicateImageConversation() {
-    const [images, setImages] = useState([])
+    // const [images, setImages] = useState([])
+    const images = useReplicateImageStore((state) => state.images)
 
     return (
         <>
-            <ImagePrompt images={images} setImages={setImages} />
+            <ImagePrompt />
 
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt

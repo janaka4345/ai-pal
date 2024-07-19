@@ -1,24 +1,26 @@
 'use client'
-import { imagePromptSchema } from '@/lib/shema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import Spinner from '@/components/custom/Spinner'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { useRouter } from 'next/navigation'
-import axios from 'axios'
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from '@/components/ui/form'
-import Spinner from '@/components/custom/Spinner'
+import { Input } from '@/components/ui/input'
+import { imagePromptSchema } from '@/lib/shema'
+import { useOpenaiImageStore } from '@/store/imageStore'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
 
-export default function ImagePrompt({ messages, setMessages }) {
+export default function ImagePrompt() {
+    const messages = useOpenaiImageStore((state) => state.images)
+    const setMessages = useOpenaiImageStore((state) => state.updateImages)
+
     const router = useRouter()
 
     const form = useForm({
@@ -32,11 +34,17 @@ export default function ImagePrompt({ messages, setMessages }) {
 
     async function onSubmit(values) {
         console.log(values)
-        setMessages((currentMessages) => [
-            ...currentMessages,
+        const fullMessage = [
+            ...messages,
             { role: 'user', content: values.imagePrompt },
             { role: 'assistant', content: 'loading' },
-        ])
+        ]
+        setMessages(fullMessage)
+        // setMessages((currentMessages) => [
+        //     ...currentMessages,
+        //     { role: 'user', content: values.imagePrompt },
+        //     { role: 'assistant', content: 'loading' },
+        // ])
         try {
             // console.log({ newmessages });
             //TODO Use server actions here
@@ -53,15 +61,19 @@ export default function ImagePrompt({ messages, setMessages }) {
 
             // ))
             const urls = response.data.data
-            setMessages((currentMessages) => {
-                const updateArray = [...currentMessages]
-                updateArray.pop()
-                updateArray.push({ role: 'assistant', content: urls })
+            const newFullMessages = [...messages]
+            newFullMessages.pop()
+            newFullMessages.push({ role: 'assistant', content: urls })
+            setMessages(newFullMessages)
+            // setMessages((currentMessages) => {
+            //     const updateArray = [...currentMessages]
+            //     updateArray.pop()
+            //     updateArray.push({ role: 'assistant', content: urls })
 
-                console.log(updateArray)
+            //     console.log(updateArray)
 
-                return updateArray
-            })
+            //     return updateArray
+            // })
             console.log(messages)
             // TODO form fselet fields arnt resreting
             form.reset({

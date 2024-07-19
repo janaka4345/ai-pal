@@ -1,24 +1,19 @@
 'use client'
-import { imagePromptSchema } from '@/lib/shema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { useRouter } from 'next/navigation'
-import axios from 'axios'
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/ui/form'
 import Spinner from '@/components/custom/Spinner'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { imagePromptSchema } from '@/lib/shema'
+import { useReplicateImageStore } from '@/store/imageStore'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
 
-export default function ImagePrompt({ images, setImages }) {
+export default function ImagePrompt() {
+    const setImages = useReplicateImageStore((state) => state.updateImages)
+
     const router = useRouter()
 
     const form = useForm({

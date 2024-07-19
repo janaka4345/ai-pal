@@ -4,15 +4,18 @@ import { useState } from 'react'
 import ImagePrompt from './_components/ImagePrompt'
 
 import ImageBubble from '@/components/custom/ImageBubble'
+import { useOpenaiImageStore } from '@/store/imageStore'
 
 export default function OpenaiImageConversation() {
-    const [messages, setMessages] = useState([])
+    // const [messages, setMessages] = useState([])
+
+    const messages = useOpenaiImageStore((state) => state.images)
 
     return (
         <>
             {/* dalle 3 free tier only allowes 1 image and resolution 1024 only
       dalle 2free tier only allowes 5 image per min */}
-            <ImagePrompt messages={messages} setMessages={setMessages} />
+            <ImagePrompt />
 
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
