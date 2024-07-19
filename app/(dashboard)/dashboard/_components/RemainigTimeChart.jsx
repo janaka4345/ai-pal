@@ -32,9 +32,24 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
-import { Suspense, useMemo } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
+import axios from 'axios'
 
-export function RemainigTimeChart({ subscribedAt, period }) {
+export function RemainigTimeChart() {
+    const [subscribedAt, setSubscribedAt] = useState(new Date())
+    const [period, setPeriod] = useState(0)
+
+    useEffect(() => {
+        const tokenData = async () => {
+            const response = await axios.get('/api/tokenData/')
+            setSubscribedAt(new Date(response?.data?.subscribedDate))
+            setPeriod(response?.data?.tier?.period)
+            // console.log(response)
+        }
+        tokenData()
+        return () => {}
+    }, [])
+
     const { datesRemaining, endAngle } = useMemo(() => {
         const date = new Date()
         const tokenExpiresAt = new Date(
@@ -48,7 +63,7 @@ export function RemainigTimeChart({ subscribedAt, period }) {
 
         const endAngle = (timeRemainig / milliesInAMonth) * 360
         return { datesRemaining, endAngle }
-    }, [])
+    }, [period])
 
     return (
         <Card className="flex w-fit min-w-[300px] flex-col">

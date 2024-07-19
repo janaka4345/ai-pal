@@ -32,9 +32,25 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import axios from 'axios'
 
-export function RemainigTokensChart({ tokensUsed, tokenCount }) {
+export function RemainigTokensChart() {
+    const [tokensUsed, setTokensUsed] = useState(0)
+    const [tokenCount, setTokenCount] = useState(0)
+
+    useEffect(() => {
+        const tokenData = async () => {
+            const response = await axios.get('/api/tokenData/')
+            setTokensUsed(response?.data?.tokensUsed)
+            setTokenCount(response?.data?.tier?.tokens)
+            // console.log({ response })
+        }
+        tokenData()
+
+        return () => {}
+    }, [])
+
     const endAngle = (1 - tokensUsed / tokenCount) * 360
     return (
         <Card className="flex w-fit min-w-[300px] flex-col">
