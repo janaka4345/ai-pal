@@ -1,4 +1,3 @@
-'use client'
 import About from './_components/About'
 import Footer from './_components/Footer'
 import Hero from './_components/Hero'

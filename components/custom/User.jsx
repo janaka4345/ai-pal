@@ -65,10 +65,13 @@ export default async function User() {
         )
     } else {
         return (
-            <div className="flex flex-row gap-2">
+            <div className="mx-2 flex w-full flex-row items-center justify-center gap-2 md:mx-4">
                 <Link
                     href="/auth/register"
-                    className={cn(buttonVariants({ variant: 'default' }))}
+                    className={cn(
+                        buttonVariants({ variant: 'default' }),
+                        'ml-auto'
+                    )}
                 >
                     Register
                 </Link>
