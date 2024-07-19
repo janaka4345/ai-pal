@@ -1,18 +1,18 @@
 'use client'
-import { Heading } from '@/components/custom/Heading'
-import MessagePrompt from './_components/MessagePrompt'
-import { useEffect, useRef, useState } from 'react'
 import MessageBubble from '@/components/custom/MessageBubble'
+import { useOpenaiConversationStore } from '@/store/conversationStore'
+import { useEffect, useRef } from 'react'
+import MessagePrompt from './_components/MessagePrompt'
 
 export default function OpenaiConversation() {
-    const [messages, setMessages] = useState([])
     const containerRef = useRef(null)
+    const messages = useOpenaiConversationStore((state) => state.messages)
 
     useEffect(() => {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
-    }, [messages])
+    }, [messages[messages.length - 1]?.message.content])
 
     return (
         <>
@@ -35,7 +35,7 @@ export default function OpenaiConversation() {
                         />
                     ))}
                 </div>
-                <MessagePrompt messages={messages} setMessages={setMessages} />
+                <MessagePrompt />
             </div>
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt

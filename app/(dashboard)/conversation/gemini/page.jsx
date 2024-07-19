@@ -2,18 +2,24 @@
 import MessageBubble from '@/components/custom/MessageBubble'
 import { useEffect, useRef, useState } from 'react'
 import MessagePrompt from './_components/MessagePrompt'
+import { useGeminiConversationStore } from '@/store/conversationStore'
 
 export default function GeminiConversation() {
-    const [messages, setMessages] = useState([])
+    // const [messages, setMessages] = useState([])
     const containerRef = useRef(null)
+
+    const messages = useGeminiConversationStore((state) => state.messages)
+    // const setMessages = useGeminiConversationStore(
+    //     (state) => state.updateMessages
+    // )
     console.log(messages)
     useEffect(() => {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
-        //TODO dependancy array mus tdepend on primitives
+        //TODO dependancy array mus depend on primitives
         // }, [messages[messages.length - 1].parts[0].text])
-    }, [messages])
+    }, [messages[messages.length - 1]?.parts[0].text])
 
     return (
         <>
@@ -38,7 +44,7 @@ export default function GeminiConversation() {
                             />
                         ))}
                 </div>
-                <MessagePrompt messages={messages} setMessages={setMessages} />
+                <MessagePrompt />
             </div>
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt

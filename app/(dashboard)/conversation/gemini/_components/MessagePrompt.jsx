@@ -15,8 +15,15 @@ import {
 import axios from 'axios'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
 import Spinner from '@/components/custom/Spinner'
+import { useGeminiConversationStore } from '@/store/conversationStore'
 
-export default function MessagePrompt({ messages, setMessages }) {
+export default function MessagePrompt() {
+    const messages = useGeminiConversationStore((state) => state.messages)
+    const setMessages = useGeminiConversationStore(
+        (state) => state.updateMessages
+    )
+
+    console.log({ messages, setMessages })
     const form = useForm({
         resolver: zodResolver(promptSchema),
         defaultValues: {
@@ -34,11 +41,12 @@ export default function MessagePrompt({ messages, setMessages }) {
         }
 
         const newMessages = [...messages, userMessage]
-        setMessages((currentMessages) => [
-            ...currentMessages,
+        const fullMessage = [
+            ...messages,
             userMessage,
             { role: 'model', parts: [{ text: 'loading' }] },
-        ])
+        ]
+        setMessages(fullMessage)
 
         try {
             //TODO Use server actions here
@@ -46,11 +54,10 @@ export default function MessagePrompt({ messages, setMessages }) {
                 messages: newMessages,
             })
 
-            setMessages((currentMessages) => {
-                const updateArray = [...currentMessages]
-                updateArray[updateArray.length - 1] = response.data
-                return updateArray
-            })
+            const newFullMessage = [...fullMessage]
+            newFullMessage[newFullMessage.length - 1] = response.data
+
+            setMessages(newFullMessage)
 
             if (response.status != 200) {
                 throw new Error('Network response was not ok')

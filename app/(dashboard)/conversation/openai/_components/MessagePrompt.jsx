@@ -15,8 +15,14 @@ import {
 import axios from 'axios'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
 import Spinner from '@/components/custom/Spinner'
+import { useOpenaiConversationStore } from '@/store/conversationStore'
 
-export default function MessagePrompt({ messages, setMessages }) {
+export default function MessagePrompt() {
+    const messages = useOpenaiConversationStore((state) => state.messages)
+    const setMessages = useOpenaiConversationStore(
+        (state) => state.updatemessages
+    )
+
     const form = useForm({
         resolver: zodResolver(promptSchema),
         defaultValues: {
@@ -32,23 +38,32 @@ export default function MessagePrompt({ messages, setMessages }) {
             content: values.message,
         }
         const newMessages = [...messages, userMessage]
-        setMessages((currentMessages) => [
-            ...currentMessages,
+        const fullMessage = [
+            ...messages,
             userMessage,
             { role: 'assistant', content: 'loading' },
-        ])
+        ]
+        // setMessages((currentMessages) => [
+        //     ...currentMessages,
+        //     userMessage,
+        //     { role: 'assistant', content: 'loading' },
+        // ])
+        setMessages(fullMessage)
 
         try {
             //TODO Use server actions here
             const response = await axios.post('/api/conversation', {
                 messages: newMessages,
             })
+            const newFullMessage = [...fullMessage]
+            newFullMessage[newFullMessage.length - 1] = response.data
 
-            setMessages((currentMessages) => {
-                const updateArray = [...currentMessages]
-                updateArray[updateArray.length - 1] = response.data
-                return updateArray
-            })
+            setMessages(newFullMessage)
+            // setMessages((currentMessages) => {
+            //     const updateArray = [...currentMessages]
+            //     updateArray[updateArray.length - 1] = response.data
+            //     return updateArray
+            // })
 
             if (response.status != 200) {
                 throw new Error('Network response was not ok')
