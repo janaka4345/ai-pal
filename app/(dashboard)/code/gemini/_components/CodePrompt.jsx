@@ -10,12 +10,16 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { codePromptSchema } from '@/lib/shema'
+import { useGeminiCodeStore } from '@/store/codeStore'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 
-export default function CodePrompt({ messages, setMessages }) {
+export default function CodePrompt() {
+    const messages = useGeminiCodeStore((state) => state.messages)
+    const setMessages = useGeminiCodeStore((state) => state.updateMessages)
+
     const form = useForm({
         resolver: zodResolver(codePromptSchema),
         defaultValues: {
@@ -32,21 +36,31 @@ export default function CodePrompt({ messages, setMessages }) {
         }
         const newMessages = [...messages, userMessage]
 
-        setMessages((currentMessages) => [
-            ...currentMessages,
+        const fullMessage = [
+            ...messages,
             userMessage,
             { role: 'model', parts: [{ text: 'loading' }] },
-        ])
+        ]
+        // setMessages((currentMessages) => [
+        //     ...currentMessages,
+        //     userMessage,
+        //     { role: 'model', parts: [{ text: 'loading' }] },
+        // ])
+        setMessages(fullMessage)
         try {
             const response = await axios.post('/api/codeGemini', {
                 messages: newMessages,
             })
 
-            setMessages((currentMessages) => {
-                const updateArray = [...currentMessages]
-                updateArray[updateArray.length - 1] = response.data
-                return updateArray
-            })
+            const newFullMessage = [...fullMessage]
+            newFullMessage[newFullMessage.length - 1] = response.data
+
+            setMessages(newFullMessage)
+            // setMessages((currentMessages) => {
+            //     const updateArray = [...currentMessages]
+            //     updateArray[updateArray.length - 1] = response.data
+            //     return updateArray
+            // })
 
             if (response.status != 200) {
                 throw new Error('Network response was not ok')

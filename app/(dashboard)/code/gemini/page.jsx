@@ -3,9 +3,11 @@ import CodeBubble from '@/components/custom/CodeBubble'
 import MessageBubble from '@/components/custom/MessageBubble'
 import { useEffect, useRef, useState } from 'react'
 import CodePrompt from './_components/CodePrompt'
+import { useGeminiCodeStore } from '@/store/codeStore'
 
 export default function CodeGeneration() {
-    const [messages, setMessages] = useState([])
+    // const [messages, setMessages] = useState([])
+    const messages = useGeminiCodeStore((state) => state.messages)
 
     const containerRef = useRef(null)
 
@@ -39,7 +41,7 @@ export default function CodeGeneration() {
                         )
                     )}
                 </div>
-                <CodePrompt messages={messages} setMessages={setMessages} />
+                <CodePrompt />
             </div>
         </>
     )

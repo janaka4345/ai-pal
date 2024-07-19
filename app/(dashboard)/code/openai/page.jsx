@@ -12,7 +12,7 @@ export default function CodeGeneration() {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
-    }, [messages])
+    }, [messages[messages.length - 1]?.message.content])
 
     return (
         <>
