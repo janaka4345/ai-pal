@@ -12,10 +12,6 @@ export default function ReplicateImageConversation() {
         <>
             <ImagePrompt />
 
-            {/* TODO add conversaation style message output 
-      consider st5ramnig output like chatgpt
-      */}
-
             <div className="mx-auto mt-8 grid h-[60%] grid-cols-1 gap-4 overflow-auto md:grid-cols-2">
                 {images.map((image, i) => (
                     <ImageCard key={i} image={image} />

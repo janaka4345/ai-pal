@@ -1,4 +1,3 @@
-import error from '@/app/auth/error/page'
 import prisma from '@/lib/prismaClient'
 import { userAuthformSchema } from '@/lib/shema'
 import { PrismaAdapter } from '@auth/prisma-adapter'
@@ -73,7 +72,7 @@ export const authOptions = {
         }),
     ],
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user, account }) {
             // console.log({ user, account, profile, email, credentials });
             if (account.provider !== 'credentials') {
                 return true
