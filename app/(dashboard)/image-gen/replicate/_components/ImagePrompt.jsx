@@ -103,6 +103,14 @@ export default function ImagePrompt() {
                     />
                 </form>
             </Form>
+            {isLoading && (
+                <div className="mx-auto w-fit">
+                    <h1 className="my-4 text-lg font-medium text-gray-900">
+                        This may take a minute.Please wait{' '}
+                    </h1>
+                    <Spinner text="Generating..." />
+                </div>
+            )}
         </>
     )
 }
