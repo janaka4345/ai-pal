@@ -24,6 +24,10 @@ export default function CodeGeneration() {
                     ref={containerRef}
                     className="h-[90%] overflow-y-auto overflow-x-clip"
                 ></div>
+                <h1 className="mb-4 mt-4 text-xl font-normal leading-none tracking-tight text-red-400 md:text-xl lg:mb-6">
+                    Unfortunately OpenAi has stopped supporting free tier usage.
+                    Use Gemini instead while we work alternative for it.
+                </h1>
                 {messages.map((message, i) =>
                     message.role === 'user' ? (
                         <MessageBubble

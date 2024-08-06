@@ -16,6 +16,10 @@ export default function OpenaiImageConversation() {
             {/* dalle 3 free tier only allowes 1 image and resolution 1024 only
       dalle 2free tier only allowes 5 image per min */}
             <ImagePrompt />
+            <h1 className="mb-4 mt-4 text-xl font-normal leading-none tracking-tight text-red-400 md:text-xl lg:mb-6">
+                Unfortunately OpenAi has stopped supporting free tier usage. Use
+                Replicate instead while we work alternative for it.
+            </h1>
 
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
