@@ -2,11 +2,29 @@ import { cn } from '@/lib/utils'
 import User from './User'
 import { buttonVariants } from '../ui/button'
 import Link from 'next/link'
+const menuItems = [
+    {
+        name: 'Home',
+        path: '/',
+    },
+    {
+        name: 'About',
+        path: '/#about',
+    },
+    {
+        name: 'Pricing',
+        path: '/#pricing',
+    },
+    {
+        name: 'Contacts',
+        path: '/#contact',
+    },
+]
 
 export default function NavBar() {
     return (
-        <nav className="fixed start-0 top-0 z-20 h-[8dvh] w-full border-b border-gray-200 backdrop-blur-md md:h-[10dvh]">
-            <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-around p-4">
+        <nav className="fixed start-0 top-0 z-20 flex h-[10dvh] w-full items-center justify-center border-b border-gray-200 backdrop-blur-md">
+            <div className="mx-2 flex w-full flex-row items-center justify-center md:mx-4">
                 <Link href="/" className="flex items-center space-x-3">
                     <svg
                         className="h-[40px] w-[60px]"
@@ -98,43 +116,24 @@ export default function NavBar() {
                     </span>
                 </Link>
 
-                <div className="mx-auto hidden w-full items-center justify-between md:flex md:w-auto">
-                    <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0">
-                        <li>
+                {/* <div className="mx-10 hidden w-fit items-center justify-center md:flex"> */}
+                <ul className="mx-auto mt-4 hidden w-fit flex-col items-center justify-center p-4 font-medium md:mt-0 md:flex md:flex-row md:space-x-8 md:p-0">
+                    {menuItems.map((item) => (
+                        <li
+                            key={item.name}
+                            className="transition-all duration-150 hover:scale-110"
+                        >
                             <Link
-                                href="/"
-                                className="rounded bg-blue-700 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-blue-700"
+                                href={item.path}
+                                className="px-3 py-2 text-secondary-foreground hover:text-primary md:bg-transparent md:p-0"
                                 aria-current="page"
                             >
-                                Home
+                                {item.name}
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                href="/#about"
-                                className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-                            >
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/#pricing"
-                                className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-                            >
-                                Pricing
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/#contact"
-                                className="rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-                            >
-                                Contact
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
+                    ))}
+                </ul>
+                {/* </div> */}
                 {/* <div className="hidden space-x-3 md:order-2 md:flex md:space-x-0">
                     <button
                         type="button"
@@ -161,12 +160,6 @@ export default function NavBar() {
                     </button>
                 </div> */}
                 {/* TODO session change fix */}
-                <Link
-                    href="/dashboard"
-                    className={cn(buttonVariants(), 'ml-auto mr-4')}
-                >
-                    Dashboard
-                </Link>
                 <User />
             </div>
         </nav>
