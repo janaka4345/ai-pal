@@ -41,6 +41,13 @@ const routes = [
     //   color: "text-pink-700",
     //   href: "/imageReplicate",
     // },
+
+    {
+        label: 'Code Generation',
+        icon: Code,
+        color: 'text-green-700',
+        href: '/code/gemini',
+    },
     {
         label: 'Video Generation',
         icon: VideoIcon,
@@ -52,12 +59,6 @@ const routes = [
         icon: Music,
         color: 'text-emerald-500',
         href: '/music',
-    },
-    {
-        label: 'Code Generation',
-        icon: Code,
-        color: 'text-green-700',
-        href: '/code/gemini',
     },
     {
         label: 'Settings',
