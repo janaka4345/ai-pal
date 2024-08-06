@@ -17,12 +17,14 @@ export default function MusicGeneration() {
                 iconColor="text-emerald-500"
                 bgColor="bg-emerald-700/10"
             />
-            Comming zoon
-            <MusicPrompt music={music} setMusic={setMusic} />
+            <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl lg:mb-6">
+                Comming Soon
+            </h1>
+            {/* <MusicPrompt music={music} setMusic={setMusic} /> */}
             {/* TODO add conversaation style message output 
       consider st5ramnig output like chatgpt
       */}
-            <pre>{JSON.stringify(music, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(music, null, 2)}</pre> */}
         </>
     )
 }
