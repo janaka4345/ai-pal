@@ -37,7 +37,7 @@ export default async function User() {
                                 alt="avatar"
                             />
                             <AvatarFallback alt="avatar">
-                                {session?.user.name}
+                                {session?.user.name.slice(0, 2).toUpperCase()}
                             </AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
@@ -65,12 +65,12 @@ export default async function User() {
         )
     } else {
         return (
-            <div className="mx-2 flex w-full flex-row items-center justify-center gap-2 md:mx-4">
+            <div className="ml-auto mr-4">
                 <Link
                     href="/auth/register"
                     className={cn(
                         buttonVariants({ variant: 'default' }),
-                        'ml-auto'
+                        'ml-auto mr-4'
                     )}
                 >
                     Register
