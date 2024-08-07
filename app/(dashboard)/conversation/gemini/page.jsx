@@ -3,6 +3,7 @@ import MessageBubble from '@/components/custom/MessageBubble'
 import { useEffect, useRef, useState } from 'react'
 import MessagePrompt from './_components/MessagePrompt'
 import { useGeminiConversationStore } from '@/store/conversationStore'
+import { useSession } from 'next-auth/react'
 
 export default function GeminiConversation() {
     // const [messages, setMessages] = useState([])
@@ -20,7 +21,7 @@ export default function GeminiConversation() {
         //TODO dependancy array mus depend on primitives
         // }, [messages[messages.length - 1].parts[0].text])
     }, [messages[messages.length - 1]?.parts[0].text])
-
+    const { data: session } = useSession()
     return (
         <>
             {/* must spesify a height for use effect scrolling to work */}
@@ -37,7 +38,7 @@ export default function GeminiConversation() {
                                 // message='hi'
                                 avatar={
                                     message.role === 'user'
-                                        ? '/avatar.png'
+                                        ? session.user.image
                                         : '/ai-avatar.png'
                                 }
                                 role={message.role}

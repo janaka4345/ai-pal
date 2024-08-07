@@ -3,6 +3,7 @@ import MessageBubble from '@/components/custom/MessageBubble'
 import { useOpenaiConversationStore } from '@/store/conversationStore'
 import { useEffect, useRef } from 'react'
 import MessagePrompt from './_components/MessagePrompt'
+import { useSession } from 'next-auth/react'
 
 export default function OpenaiConversation() {
     const containerRef = useRef(null)
@@ -13,7 +14,7 @@ export default function OpenaiConversation() {
             containerRef.current.scrollTop = containerRef.current.scrollHeight
         }
     }, [messages[messages.length - 1]?.message.content])
-
+    const { data: session } = useSession()
     return (
         <>
             {/* must spesify a height for use effect scrolling to work */}
@@ -33,7 +34,7 @@ export default function OpenaiConversation() {
                             message={message.content}
                             avatar={
                                 message.role === 'user'
-                                    ? '/avatar.png'
+                                    ? session.user.image
                                     : '/ai-avatar.png'
                             }
                             role={message.role}

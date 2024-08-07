@@ -4,12 +4,14 @@ import MessageBubble from '@/components/custom/MessageBubble'
 import { useEffect, useRef, useState } from 'react'
 import CodePrompt from './_components/CodePrompt'
 import { useGeminiCodeStore } from '@/store/codeStore'
+import { useSession } from 'next-auth/react'
 
 export default function CodeGeneration() {
     // const [messages, setMessages] = useState([])
     const messages = useGeminiCodeStore((state) => state.messages)
 
     const containerRef = useRef(null)
+    const { data: session } = useSession()
 
     useEffect(() => {
         if (containerRef.current) {
@@ -31,7 +33,7 @@ export default function CodeGeneration() {
                                 key={i}
                                 message={message?.parts[0]?.text}
                                 role={message?.role}
-                                avatar="/avatar.png"
+                                avatar={session.user.image || '/avatar.png'}
                             />
                         ) : (
                             <CodeBubble

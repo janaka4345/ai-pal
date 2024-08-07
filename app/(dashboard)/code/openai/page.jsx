@@ -3,8 +3,10 @@ import MessageBubble from '@/components/custom/MessageBubble'
 import { useEffect, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import CodePrompt from './_components/CodePrompt'
+import { useSession } from 'next-auth/react'
 export default function CodeGeneration() {
     const [messages, setMessages] = useState([])
+    const { data: session } = useSession()
 
     const containerRef = useRef(null)
 
@@ -34,7 +36,7 @@ export default function CodeGeneration() {
                             key={i}
                             message={message.parts[0].text}
                             role={message.role}
-                            avatar="/avatar.png"
+                            avatar={session.user.image || '/avatar.png'}
                         />
                     ) : (
                         <ReactMarkdown

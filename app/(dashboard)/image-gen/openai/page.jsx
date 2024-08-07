@@ -5,8 +5,10 @@ import ImagePrompt from './_components/ImagePrompt'
 
 import ImageBubble from '@/components/custom/ImageBubble'
 import { useOpenaiImageStore } from '@/store/imageStore'
+import { useSession } from 'next-auth/react'
 
 export default function OpenaiImageConversation() {
+    const { data: session } = useSession()
     // const [messages, setMessages] = useState([])
 
     const messages = useOpenaiImageStore((state) => state.images)
@@ -69,7 +71,7 @@ export default function OpenaiImageConversation() {
                     <ImageBubble
                         key={i}
                         message={message.content}
-                        avatar="/avatar.png"
+                        avatar={session.user.image || '/avatar.png'}
                         role={message.role}
                     />
                 ))}
