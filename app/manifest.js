@@ -1,6 +1,6 @@
-import { MetadataRoute } from 'next'
 
-export default function manifest(): MetadataRoute.Manifest {
+
+export default function manifest() {
     return {
         name: 'All in one ai toolkit App',
         short_name: 'Ai Pal',
