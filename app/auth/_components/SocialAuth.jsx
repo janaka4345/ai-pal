@@ -35,19 +35,19 @@ export default function SocialAuth() {
         )}{" "} */}
                 Google
             </Button>
-            <Button
+            {/* <Button
                 variant="outline"
                 type="button"
                 // disabled={isLoading}
                 onClick={() => handleClick('facebook')}
-            >
-                {/* {isLoading ? (
+            > */}
+            {/* {isLoading ? (
            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
            <Icons.gitHub className="mr-2 h-4 w-4" />
         )}{" "} */}
-                Facebook
-            </Button>
+            {/* Facebook
+            </Button> */}
             <Button
                 variant="outline"
                 type="button"
